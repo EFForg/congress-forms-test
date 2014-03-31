@@ -67,8 +67,13 @@
         <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script>
-    $.post( "http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/retrieve-form-elements", function( data ) {
-      console.log(data);
+    $.ajax({
+      url: "http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/retrieve-form-elements",
+      type: 'post',
+      data: {bio_ids: ['C000880']},
+      success: function( data ) {
+        console.log(data);
+      }
     });
     </script>
 
