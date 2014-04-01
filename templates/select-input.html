@@ -1,0 +1,8 @@
+<div class="form-group col-md-4 col-lg-4">
+  <label for="{{name}}">{{label}}</label>
+  <select class="form-control" name="{{name}}" id="{{name}}">
+    {{#options_hash}}
+      <option>{{.}}</option>
+    {{/options_hash}}
+  </select>
+</div>
