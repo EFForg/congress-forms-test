@@ -7,12 +7,14 @@ define([
   'querystring',
   'text!templates/form.html',
   'text!templates/plain-input.html',
-  'text!templates/select-input.html'
-], function($, Backbone, _, Mustache, config, qs, formTemplate, plainInputTemplate, selectInputTemplate){
+  'text!templates/select-input.html',
+  'text!templates/captcha.html'
+], function($, Backbone, _, Mustache, config, qs, formTemplate, plainInputTemplate, selectInputTemplate, captchaTemplate){
   var LegislatorView = Backbone.View.extend({
     el: '.form-container',
     events: {
-      'submit form.congress-forms-test': 'fillOutForm'
+      'submit form.congress-forms-test': 'fillOutForm',
+      'click .btn-submit-captcha': 'fillOutCaptcha'
     },
     render: function () {
       var that = this;
@@ -88,18 +90,43 @@ define([
       var form = $(ev.currentTarget);
       var data = form.serializeObject();
       console.log(data);
-
+      var that = this;
+      that.$el.find('input, textarea, button, select').attr('disabled', 'disabled');
 
       $.ajax({
         url: config.CONTACT_CONGRESS_SERVER + '/fill-out-form',
         type: 'post',
         data: {
           bio_id: this.model.get('bioguide_id'),
-          uid: 'tesadadas',
+          uid: 'wwwwwww',
           fields: data
         },
         success: function( data ) {
           console.log(arguments);
+          if(data.status === 'captcha_needed') {
+            $('.captcha-container').append(Mustache.render(captchaTemplate, {captcha_url: data.url}));
+          }
+        }
+      });
+
+      return false;
+    },
+    fillOutCaptcha: function (ev) {
+      var answer = $('#captcha').val();
+      var that = this;
+      $.ajax({
+        url: config.CONTACT_CONGRESS_SERVER + '/fill-out-captcha',
+        type: 'post',
+        data: {
+          uid: 'wwwwwww',
+          answer: answer
+        },
+        success: function( data ) {
+          if(data.status === 'error') {
+            $('.captcha-container').empty();
+            that.$el.find('input, textarea, button, select').removeAttr('disabled');
+            $('.form-error').slideDown(200).delay(1500).slideUp(200);
+          };
         }
       });
 
