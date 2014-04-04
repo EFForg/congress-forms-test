@@ -7,3 +7,22 @@
 .legislator-status-container {
   display: none;
 }
+
+.additional_info_row{
+  display: none;
+}
+
+.info_row{
+  cursor: pointer;
+}
+
+.field_id{
+  font-weight: bold;
+}
+
+.additional_info_row table.table{
+  background-color: inherit;
+}
+.additional_info_row table>tbody>tr>td{
+  border-top: 0px;
+}

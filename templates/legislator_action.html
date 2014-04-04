@@ -1,4 +1,4 @@
-<tr>
+<tr class="info_row {{tr_class}}" data-step='{{step}}'>
   <td>
     {{step}}
   </td>
@@ -6,6 +6,65 @@
     {{action}}
   </td>
   <td>
+    {{selector}}
+  </td>
+  <td>
     {{value}}
+  </td>
+</tr>
+<tr class='additional_info_row {{tr_class}}' data-step='{{step}}'>
+  <td colspan='4'>
+    <table class='table'>
+      <tbody>
+        <tr>
+          <td class='field_id'>
+            captcha id selector
+          </td>
+          <td class='field_value'>
+            {{captcha_id_selector}}
+          </td>
+        </tr>
+        <tr>
+          <td class='field_id'>
+            captcha selector
+          </td>
+          <td class='field_value'>
+            {{captcha_selector}}
+          </td>
+        </tr>
+        <tr>
+          <td class='field_id'>
+            maxlength
+          </td>
+          <td class='field_value'>
+            {{maxlength}}
+          </td>
+        </tr>
+        <tr>
+          <td class='field_id'>
+            options
+          </td>
+          <td class='field_value'>
+            {{{options_html}}}
+          </td>
+        </tr>
+        <tr>
+          <td class='field_id'>
+            required
+          </td>
+          <td class='field_value'>
+            {{required}}
+          </td>
+        </tr>
+        <tr>
+          <td class='field_id'>
+            name
+          </td>
+          <td class='field_value'>
+            {{name}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </td>
 </tr>
