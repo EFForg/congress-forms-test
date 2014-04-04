@@ -7,6 +7,7 @@ require.config({
     mustache: 'https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min',
     text: 'https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text',
     marked: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.1/marked.min',
+    fancybox: 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack',
     templates: '../templates',
     querystring: 'lib/querystring'
   }
@@ -18,13 +19,14 @@ require([
   'mustache',
   'querystring',
   'marked',
+  'fancybox',
   'models/legislator',
   'collections/legislator_actions',
   'views/legislator',
   'views/form',
   'views/legislator_actions',
   'views/legislator_status'
-], function($, Mustache, qs, marked, LegislatorModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView){
+], function($, Mustache, qs, marked, fancybox, LegislatorModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView){
 
   // Get the legislator id from query string 
   var bioguide_id = qs.get().bioguide_id || '';
@@ -69,7 +71,7 @@ require([
         var idCols = $('.legislator-status-container tr td:first-child');
         console.log(idCols);
         $.each(idCols, function(index, col) {
-          $(col).html('<a href="?SUNLIGHT_API_KEY=3d4faf1bbaf64fa4906c6d9f9ce8c2cc&bioguide_id=' + $(col).text() + '"">' + $(col).text() + '</a>');
+          $(col).html('<a href="?bioguide_id=' + $(col).text() + '"">' + $(col).text() + '</a>');
         });
       }
     })
