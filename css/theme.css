@@ -26,3 +26,10 @@
 .additional_info_row table>tbody>tr>td{
   border-top: 0px;
 }
+#last-updated-label{
+  font-weight: bold;
+}
+
+#updated{
+  margin-bottom: 20px;
+}
