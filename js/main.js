@@ -17,9 +17,11 @@ require([
   'mustache',
   'querystring',
   'models/legislator',
+  'collections/legislator_actions',
   'views/legislator',
-  'views/form'
-], function($, Mustache, qs, LegislatorModel, LegislatorView, FormView){
+  'views/form',
+  'views/legislator_actions'
+], function($, Mustache, qs, LegislatorModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView){
 
   // Get the legislator id from query string 
   var bioguide_id = qs.get().bioguide_id || '';
@@ -28,6 +30,10 @@ require([
   var legislator = new LegislatorModel({
     bioguide_id: bioguide_id
   });
+  var legislator_actions = new LegislatorActionCollection({
+    bioguide_id: bioguide_id
+  });
+
   legislator.fetch({
     success: function (legislator) {
       console.log(legislator);
@@ -36,9 +42,17 @@ require([
 
       var formView = new FormView({model: legislator});
       formView.render();
-
     }
   })
+
+  legislator_actions.fetch({
+    success: function(legislator_actions){
+      var legislator_actions_view = new LegislatorActionsView({
+        collection: legislator_actions
+      });
+      legislator_actions_view.render();
+    }
+  });
 
 });
 
@@ -52,12 +66,7 @@ require([
 
 
 
-
-
-
-
-
-/*
+/* 
 var helper = {
   dc_zips: [20001, 20002, 20003, 20004, 20005, 20006, 20007, 20008, 20009, 20010, 20011, 20012, 20015, 20016, 20017, 20018, 20019, 20020, 20024, 20032, 20036, 20037, 20045, 20052, 20053, 20057, 20064, 20202, 20204, 20228, 20230, 20240, 20245, 20260, 20307, 20317, 20319, 20373, 20390, 20405, 20418, 20427, 20506, 20510, 20520, 20535, 20540, 20551, 20553, 20560, 20565, 20566, 20593],
   zip_in_dc: function(zip){
