@@ -16,7 +16,17 @@ define([
         if(typeof options == 'string'){
           options_html = "<em>" + options + "</em>";
         } else {
-          options_html = "<ul>" + _.map(options, function(option){ return "<li>" + option + "</li>"; }).join("") + "</ul>";
+          options_html = "<ul>"
+          if(options instanceof Array) {
+            options_html += _.map(options, function(option){
+              return "<li>&quot;" + option + "&quot;</li>";
+            }).join("");
+          } else {
+            options_html += _.map(_.zip(_.keys(options), _.values(options)), function(zipped){
+              return "<li>&quot;" + zipped[0] + "&quot; &rarr; &quot;" + zipped[1] + "&quot;</li>"
+            }).join("");
+          }
+          options_html += "</ul>";
         }
         return Mustache.render(legislatorActionTemplate, _.extend(
           {
