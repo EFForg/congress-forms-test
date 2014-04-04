@@ -9,6 +9,7 @@ require.config({
     marked: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.1/marked.min',
     fancybox: 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack',
     jsyaml: 'lib/js-yaml.min',
+    moment: 'lib/moment.min',
     templates: '../templates',
     querystring: 'lib/querystring'
   }

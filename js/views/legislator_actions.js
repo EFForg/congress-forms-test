@@ -37,9 +37,12 @@ define([
           legislator_action.attributes
         ))
       }).join(""));
+
       $('.info_row').on('click', function(){
         $('.additional_info_row[data-step=' + $(this).data('step') + ']').toggle();
       });
+
+      $('#actions-last-updated').text(this.collection.last_updated);
     }
   })
   return LegislatorActionsView;
