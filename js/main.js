@@ -6,6 +6,7 @@ require.config({
     backbone: 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
     mustache: 'https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min',
     text: 'https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text',
+    marked: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.1/marked.min',
     templates: '../templates',
     querystring: 'lib/querystring'
   }
@@ -16,44 +17,64 @@ require([
   'jquery',
   'mustache',
   'querystring',
+  'marked',
   'models/legislator',
   'collections/legislator_actions',
   'views/legislator',
   'views/form',
-  'views/legislator_actions'
-], function($, Mustache, qs, LegislatorModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView){
+  'views/legislator_actions',
+  'views/legislator_status'
+], function($, Mustache, qs, marked, LegislatorModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView){
 
   // Get the legislator id from query string 
   var bioguide_id = qs.get().bioguide_id || '';
 
-  // Fetch legislator data from Sunlight Labs
-  var legislator = new LegislatorModel({
-    bioguide_id: bioguide_id
-  });
-  var legislator_actions = new LegislatorActionCollection({
-    bioguide_id: bioguide_id
-  });
+  if(bioguide_id.length > 0) {
+    $('.bioguide-form-container').show();
+    // Fetch legislator data from Sunlight Labs
+    var legislator = new LegislatorModel({
+      bioguide_id: bioguide_id
+    });
+    var legislator_actions = new LegislatorActionCollection({
+      bioguide_id: bioguide_id
+    });
 
-  legislator.fetch({
-    success: function (legislator) {
-      console.log(legislator);
-      var legislatorView = new LegislatorView({model: legislator});
-      legislatorView.render();
+    legislator.fetch({
+      success: function (legislator) {
+        console.log(legislator);
+        var legislatorView = new LegislatorView({model: legislator});
+        legislatorView.render();
 
-      var formView = new FormView({model: legislator});
-      formView.render();
-    }
-  })
+        var formView = new FormView({model: legislator});
+        formView.render();
+      }
+    })
 
-  legislator_actions.fetch({
-    success: function(legislator_actions){
-      var legislator_actions_view = new LegislatorActionsView({
-        collection: legislator_actions
-      });
-      legislator_actions_view.render();
-    }
-  });
-
+    legislator_actions.fetch({
+      success: function(legislator_actions){
+        var legislator_actions_view = new LegislatorActionsView({
+          collection: legislator_actions
+        });
+        legislator_actions_view.render();
+      }
+    });
+  } else {
+    //LegislatorStatusView
+    $('.legislator-status-container').show();
+    $.ajax({
+      url: 'http://corsgithub.herokuapp.com/EFForg/congress-forms/master/status.md',
+      success: function (res) {
+        $('.legislator-status-container .status-container').html(marked(res));
+        $('.legislator-status-container table').addClass('table table-striped');
+        var idCols = $('.legislator-status-container tr td:first-child');
+        console.log(idCols);
+        $.each(idCols, function(index, col) {
+          $(col).html('<a href="?SUNLIGHT_API_KEY=3d4faf1bbaf64fa4906c6d9f9ce8c2cc&bioguide_id=' + $(col).text() + '"">' + $(col).text() + '</a>');
+        });
+      }
+    })
+    console.log('markdown');
+  }
 });
 
 

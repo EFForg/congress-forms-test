@@ -2,3 +2,8 @@
 .form-container {
   display: none;
 }
+
+.bioguide-form-container,
+.legislator-status-container {
+  display: none;
+}
