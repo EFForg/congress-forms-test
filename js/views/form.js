@@ -11,6 +11,16 @@ define([
   'text!templates/select-input.html',
   'text!templates/captcha.html'
 ], function($, Backbone, _, Mustache, Events, config, qs, formTemplate, plainInputTemplate, selectInputTemplate, captchaTemplate){
+  function makeUID() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 10; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
+
   var LegislatorView = Backbone.View.extend({
     el: '.form-container',
     events: {
@@ -112,6 +122,7 @@ define([
             Events.trigger('BIOGUIDE_ERROR');
 
           } else {
+            $('.form-success').slideDown(200);
             alert('success?');
           }
         }
@@ -135,6 +146,8 @@ define([
             that.$el.find('input, textarea, button, select').removeAttr('disabled');
             Events.trigger('BIOGUIDE_ERROR');
             $('.form-error').slideDown(200).delay(4500).slideUp(200);
+          } else {
+            $('.form-success').slideDown(200);
           };
         }
       });
