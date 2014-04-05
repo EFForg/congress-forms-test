@@ -3,13 +3,14 @@ define([
   'backbone',
   'lodash',
   'mustache',
+  'lib/events',
   'config',
   'querystring',
   'text!templates/form.html',
   'text!templates/plain-input.html',
   'text!templates/select-input.html',
   'text!templates/captcha.html'
-], function($, Backbone, _, Mustache, config, qs, formTemplate, plainInputTemplate, selectInputTemplate, captchaTemplate){
+], function($, Backbone, _, Mustache, Events, config, qs, formTemplate, plainInputTemplate, selectInputTemplate, captchaTemplate){
   var LegislatorView = Backbone.View.extend({
     el: '.form-container',
     events: {
@@ -105,6 +106,13 @@ define([
           console.log(arguments);
           if(data.status === 'captcha_needed') {
             $('.captcha-container').append(Mustache.render(captchaTemplate, {captcha_url: data.url}));
+          } else if (data.status === 'error') {
+            that.$el.find('input, textarea, button, select').removeAttr('disabled');
+            $('.form-error').slideDown(200).delay(4500).slideUp(200);
+            Events.trigger('BIOGUIDE_ERROR');
+
+          } else {
+            alert('success?');
           }
         }
       });
@@ -125,7 +133,8 @@ define([
           if(data.status === 'error') {
             $('.captcha-container').empty();
             that.$el.find('input, textarea, button, select').removeAttr('disabled');
-            $('.form-error').slideDown(200).delay(1500).slideUp(200);
+            Events.trigger('BIOGUIDE_ERROR');
+            $('.form-error').slideDown(200).delay(4500).slideUp(200);
           };
         }
       });

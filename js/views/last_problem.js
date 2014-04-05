@@ -3,8 +3,9 @@ define([
   'backbone',
   'mustache',
   'config',
-  'moment'
-], function($, Backbone, Mustache, config){
+  'moment',
+  'lib/events'
+], function($, Backbone, Mustache, config, Events){
   var LastProblemView = Backbone.View.extend({
     render: function () {
       console.log(this.model.attributes);

@@ -20,6 +20,7 @@ require([
   'jquery',
   'mustache',
   'querystring',
+  'lib/events',
   'marked',
   'fancybox',
   'models/legislator',
@@ -30,7 +31,7 @@ require([
   'views/legislator_actions',
   'views/legislator_status',
   'views/last_problem'
-], function($, Mustache, qs, marked, fancybox, LegislatorModel, LastProblemModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView, LastProblemView){
+], function($, Mustache, qs, Events, marked, fancybox, LegislatorModel, LastProblemModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView, LastProblemView){
 
   // Get the legislator id from query string 
   var bioguide_id = qs.get().bioguide_id || '';
@@ -67,15 +68,19 @@ require([
         legislator_actions_view.render();
       }
     });
-
-    last_problem.fetch({
-      success: function(last_problem){
-        var last_problem_view = new LastProblemView({
-          model: last_problem
-        });
-        last_problem_view.render();
-      }
-    });
+    var showLastError = function () {
+      console.log('Reloading last error');
+      last_problem.fetch({
+        success: function(last_problem){
+          var last_problem_view = new LastProblemView({
+            model: last_problem
+          });
+          last_problem_view.render();
+        }
+      });
+    }
+    Events.on('BIOGUIDE_ERROR', showLastError);
+    showLastError();
   } else {
     //LegislatorStatusView
     $('.legislator-status-container').show();
