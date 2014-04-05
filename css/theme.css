@@ -41,3 +41,7 @@
 #error_info{
   display: none;
 }
+
+img.last_problem {
+  width: 100%;
+}

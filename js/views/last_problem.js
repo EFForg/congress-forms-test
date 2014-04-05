@@ -17,7 +17,7 @@ define([
       }
 
       if('screenshot' in this.model.attributes){
-        $('#error_image').html("<img src='" + config.CONTACT_CONGRESS_SERVER + "/" + this.model.attributes.screenshot + "'>");
+        $('#error_image').html("<img class='last_problem' src='" + config.CONTACT_CONGRESS_SERVER + "/" + this.model.attributes.screenshot + "'>");
       }
     }
   })
