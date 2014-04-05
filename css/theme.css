@@ -33,3 +33,11 @@
 #updated{
   margin-bottom: 20px;
 }
+
+#error_image img{
+  border: 1px solid gray;
+}
+
+#error_info{
+  display: none;
+}
