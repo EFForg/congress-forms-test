@@ -1,6 +1,12 @@
 <div class="form-group col-md-4 col-lg-4">
   <label for="{{name}}">{{label}}</label>
   <select class="form-control" name="{{name}}" id="{{name}}">
+    <!-- if options_hash was an object, #options will be populated -->
+    {{#options}}
+      <option value="{{value}}">{{name}}</option>
+    {{/options}}
+    <!-- else options hash will be populated -->
+
     {{#options_hash}}
       <option value="{{.}}">{{.}}</option>
     {{/options_hash}}

@@ -88,6 +88,15 @@ define([
             if(field.type === 'textarea') {
 
             } else if (field.options_hash !== null) {
+
+              if(!$.isArray(field.options_hash)) {
+                field.options = [];
+                _.each(field.options_hash, function(option, key){
+                  field.options.push({name: key, value: option});
+                });
+                delete field.options_hash;
+              };
+
               $('.required-fields-container').append(Mustache.render(selectInputTemplate, field));
             } else {
               $('.required-fields-container').append(Mustache.render(plainInputTemplate, field));
@@ -123,7 +132,6 @@ define([
 
           } else {
             $('.form-success').slideDown(200);
-            alert('success?');
           }
         }
       });

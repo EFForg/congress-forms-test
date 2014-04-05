@@ -39,10 +39,6 @@ define(['querystring'], function(qs) {
         name: '$MESSAGE',
         label: 'Message',
         type: 'textarea'
-      },
-      {
-        name: '$ADDRESS_STATE_POSTAL_ABBREV',
-        label: 'State Abbrev'
       }
     ]
   }
