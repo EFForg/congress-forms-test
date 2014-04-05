@@ -88,9 +88,8 @@ define([
             if(field.type === 'textarea') {
 
             } else if (field.options_hash !== null) {
-              console.log('hey', field.options_hash);
-
-              if(field.options_hash === 'US_STATES_AND_MPCS') {
+              // There is some logic here to handle if options_hash is an array, object or string
+              if(field.options_hash === 'US_STATES_AND_MPCS' || field.options_hash === 'US_STATES_AND_TERRITORIES') {
                 field.options = config.STATES;
                 delete field.options_hash;
               } 
