@@ -65,7 +65,7 @@ define(['querystring'], function(qs) {
       },
       {
         name: '$ADDRESS_ZIP5',
-        example: '11111'
+        example: '‎94102'
       },
       {
         name: '$EMAIL',
@@ -82,6 +82,10 @@ define(['querystring'], function(qs) {
       {
         name: '$NAME_PREFIX',
         example: 'Mr'
+      },
+      {
+        name: '$PHONE',
+        example: '(541) 754-3010'
       }
     ],
     STATES: [

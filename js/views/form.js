@@ -22,6 +22,7 @@ define([
   }
 
   var LegislatorView = Backbone.View.extend({
+    captcha_uid: makeUID(),
     el: '.form-container',
     events: {
       'submit form.congress-forms-test': 'fillOutForm',
@@ -108,7 +109,7 @@ define([
                 console.log(temp_options_hash);
                 field.options_hash = temp_options_hash;
               }
-              
+
               // If options_hash an object?
               if(field.options_hash && !$.isArray(field.options_hash)) {
                 field.options = [];
@@ -138,7 +139,7 @@ define([
         type: 'post',
         data: {
           bio_id: this.model.get('bioguide_id'),
-          uid: 'wwwwwww',
+          uid: that.captcha_uid,
           fields: data
         },
         success: function( data ) {
@@ -165,7 +166,7 @@ define([
         url: config.CONTACT_CONGRESS_SERVER + '/fill-out-captcha',
         type: 'post',
         data: {
-          uid: 'wwwwwww',
+          uid: that.captcha_uid,
           answer: answer
         },
         success: function( data ) {
@@ -183,6 +184,11 @@ define([
       return false;
     },
     initialize: function () {
+      var that = this;
+      Events.on('BIOGUIDE_ERROR', function () {
+        // If there is a form error, reset the UID
+        that.captcha_uid = makeUID();
+      });
     },
     populateDefaults: function () {
       _.each(config.EXAMPLE_DATA, function(example) {
