@@ -86,9 +86,9 @@ define([
           _.each(actions, function(field){
             if(field.type === 'textarea') {
 
-            } else if (field.options_hash !== null || field.name === '$ADDRESS_STATE_POSTAL_ABBREV') {
+            } else if (field.options_hash !== null || field.name === '$ADDRESS_STATE_POSTAL_ABBREV' || field.name === '$ADDRESS_STATE') {
               // There is some logic here to handle if options_hash is an array, object or string
-              if(field.name === '$ADDRESS_STATE_POSTAL_ABBREV') {
+              if(field.name === '$ADDRESS_STATE_POSTAL_ABBREV' || field.name === '$ADDRESS_STATE') {
                 field.options = config.STATES;
                 delete field.options_hash;
               } 
