@@ -82,7 +82,6 @@ define([
               options_hash: action.options_hash || null
             }
           });
-          console.log(actions);
           // Loop through our newly merged actions and output them to form
           _.each(actions, function(field){
             if(field.type === 'textarea') {
@@ -115,7 +114,7 @@ define([
       console.log(data);
       var that = this;
       that.$el.find('input, textarea, button, select').attr('disabled', 'disabled');
-
+      data['$ADDRESS_ZIP4'] = 1234;
       $.ajax({
         url: config.CONTACT_CONGRESS_SERVER + '/fill-out-form',
         type: 'post',
