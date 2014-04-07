@@ -85,7 +85,7 @@ define(['querystring'], function(qs) {
       },
       {
         name: '$PHONE',
-        example: '(541) 754-3010'
+        example: '(111) 111-1111'
       }
     ],
     STATES: [
