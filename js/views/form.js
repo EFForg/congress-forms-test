@@ -22,10 +22,12 @@ define([
   }
 
   var LegislatorView = Backbone.View.extend({
+    captcha_uid: makeUID(),
     el: '.form-container',
     events: {
       'submit form.congress-forms-test': 'fillOutForm',
-      'click .btn-submit-captcha': 'fillOutCaptcha'
+      'click .btn-submit-captcha': 'fillOutCaptcha',
+      'click .btn-populate-defaults': 'populateDefaults'
     },
     render: function () {
       var that = this;
@@ -82,17 +84,33 @@ define([
               options_hash: action.options_hash || null
             }
           });
-          console.log(actions);
           // Loop through our newly merged actions and output them to form
           _.each(actions, function(field){
             if(field.type === 'textarea') {
 
-            } else if (field.options_hash !== null || field.name === '$ADDRESS_STATE_POSTAL_ABBREV') {
+            } else if (field.options_hash !== null || field.name === '$ADDRESS_STATE_POSTAL_ABBREV' || field.name === '$ADDRESS_STATE') {
+              // TODO - This logic is god awful, clean it up once it all makes more sense
+              // or maybe the server can return a better data type
               // There is some logic here to handle if options_hash is an array, object or string
-              if(field.name === '$ADDRESS_STATE_POSTAL_ABBREV') {
+              if(field.name === '$ADDRESS_STATE_POSTAL_ABBREV' || field.name === '$ADDRESS_STATE') {
                 field.options = config.STATES;
                 delete field.options_hash;
               } 
+
+              // If options_hash is an array of objects
+              if(field.options_hash && $.isArray(field.options_hash) && typeof field.options_hash[0] === 'object') {
+                var temp_options_hash = {};
+                _.each(field.options_hash, function(option, key){
+                  // Loop through properties of nested object
+                  _.each(option, function (prop, propName) {
+                    temp_options_hash[propName] = prop;
+                  });
+                });
+                console.log(temp_options_hash);
+                field.options_hash = temp_options_hash;
+              }
+
+              // If options_hash an object?
               if(field.options_hash && !$.isArray(field.options_hash)) {
                 field.options = [];
                 _.each(field.options_hash, function(option, key){
@@ -115,13 +133,13 @@ define([
       console.log(data);
       var that = this;
       that.$el.find('input, textarea, button, select').attr('disabled', 'disabled');
-
+      data['$ADDRESS_ZIP4'] = 1234;
       $.ajax({
         url: config.CONTACT_CONGRESS_SERVER + '/fill-out-form',
         type: 'post',
         data: {
           bio_id: this.model.get('bioguide_id'),
-          uid: 'wwwwwww',
+          uid: that.captcha_uid,
           fields: data
         },
         success: function( data ) {
@@ -144,11 +162,13 @@ define([
     fillOutCaptcha: function (ev) {
       var answer = $('#captcha').val();
       var that = this;
+      that.$el.find('input, textarea, button, select').attr('disabled', 'disabled');
+
       $.ajax({
         url: config.CONTACT_CONGRESS_SERVER + '/fill-out-captcha',
         type: 'post',
         data: {
-          uid: 'wwwwwww',
+          uid: that.captcha_uid,
           answer: answer
         },
         success: function( data ) {
@@ -159,6 +179,7 @@ define([
             $('.form-error').slideDown(200).delay(4500).slideUp(200);
           } else {
             $('.form-success').slideDown(200);
+            
           };
         }
       });
@@ -166,6 +187,17 @@ define([
       return false;
     },
     initialize: function () {
+      var that = this;
+      Events.on('BIOGUIDE_ERROR', function () {
+        // If there is a form error, reset the UID
+        that.captcha_uid = makeUID();
+      });
+    },
+    populateDefaults: function () {
+      _.each(config.EXAMPLE_DATA, function(example) {
+        $('[type="text"][name="' + example.name + '"]').val(example.example);
+        console.log(example)
+      });
     }
   })
   return LegislatorView;

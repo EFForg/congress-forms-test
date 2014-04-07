@@ -41,6 +41,53 @@ define(['querystring'], function(qs) {
         type: 'textarea'
       }
     ],
+    // TODO - merge with above array
+    EXAMPLE_DATA: [
+      {
+        name: '$NAME_FIRST',
+        example: 'Joe'
+      },
+      {
+        name: '$NAME_LAST',
+        example: 'Blogs'
+      },
+      {
+        name: '$ADDRESS_STREET',
+        example: '120 Test Avenue'
+      },
+      {
+        name: '$ADDRESS_STREET_2',
+        example: 'Unit 404'
+      },
+      {
+        name: '$ADDRESS_CITY',
+        example: 'Test City'
+      },
+      {
+        name: '$ADDRESS_ZIP5',
+        example: 94102
+      },
+      {
+        name: '$EMAIL',
+        example: 'joeblogs@testcity.com'
+      },
+      {
+        name: '$MESSAGE',
+        example: 'Hello, this is a test'
+      },
+      {
+        name: '$SUBJECT',
+        example: 'Subject: Test'
+      },
+      {
+        name: '$NAME_PREFIX',
+        example: 'Mr'
+      },
+      {
+        name: '$PHONE',
+        example: '(111) 111-1111'
+      }
+    ],
     STATES: [
     { name: 'ALABAMA', value: 'AL'},
     { name: 'ALASKA', value: 'AK'},
