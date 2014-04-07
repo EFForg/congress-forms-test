@@ -85,7 +85,7 @@ require([
     //LegislatorStatusView
     $('.legislator-status-container').show();
     $.ajax({
-      url: 'http://corsgithub.herokuapp.com/EFForg/congress-forms/master/status.md',
+      url: 'status.md',
       success: function (res) {
         $('.legislator-status-container .status-container').html(marked(res));
         $('.legislator-status-container table').addClass('table table-striped');
