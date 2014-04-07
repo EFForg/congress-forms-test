@@ -162,6 +162,8 @@ define([
     fillOutCaptcha: function (ev) {
       var answer = $('#captcha').val();
       var that = this;
+      that.$el.find('input, textarea, button, select').attr('disabled', 'disabled');
+
       $.ajax({
         url: config.CONTACT_CONGRESS_SERVER + '/fill-out-captcha',
         type: 'post',
@@ -177,6 +179,7 @@ define([
             $('.form-error').slideDown(200).delay(4500).slideUp(200);
           } else {
             $('.form-success').slideDown(200);
+            
           };
         }
       });
