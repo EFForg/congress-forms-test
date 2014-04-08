@@ -64,10 +64,6 @@ define(['querystring'], function(qs) {
         example: 'Test City'
       },
       {
-        name: '$ADDRESS_ZIP5',
-        example: 94102
-      },
-      {
         name: '$EMAIL',
         example: 'joeblogs@testcity.com'
       },

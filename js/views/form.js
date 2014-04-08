@@ -6,11 +6,12 @@ define([
   'lib/events',
   'config',
   'querystring',
+  'data/data',
   'text!templates/form.html',
   'text!templates/plain-input.html',
   'text!templates/select-input.html',
   'text!templates/captcha.html'
-], function($, Backbone, _, Mustache, Events, config, qs, formTemplate, plainInputTemplate, selectInputTemplate, captchaTemplate){
+], function($, Backbone, _, Mustache, Events, config, qs, Data, formTemplate, plainInputTemplate, selectInputTemplate, captchaTemplate){
   function makeUID() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -194,10 +195,21 @@ define([
       });
     },
     populateDefaults: function () {
+      var that = this;
+
+      // Required fields example data
       _.each(config.EXAMPLE_DATA, function(example) {
         $('[type="text"][name="' + example.name + '"]').val(example.example);
-        console.log(example)
       });
+
+      // Legislator specific example data
+      if(Data.legislators[that.model.get('bioguide_id')]) {
+        var zip5 =  Data.legislators[that.model.get('bioguide_id')].zip5;
+        $('[type="text"][name="$ADDRESS_ZIP5"]').val(zip5);
+
+        var zip4 =  Data.legislators[that.model.get('bioguide_id')].zip4;
+        $('[type="text"][name="$ADDRESS_ZIP4"]').val(zip4);
+      }
     }
   })
   return LegislatorView;
