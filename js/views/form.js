@@ -134,7 +134,10 @@ define([
       console.log(data);
       var that = this;
       that.$el.find('input, textarea, button, select').attr('disabled', 'disabled');
-      data['$ADDRESS_ZIP4'] = 1234;
+      if(Data.legislators[that.model.get('bioguide_id')]) {
+        var zip4 =  Data.legislators[that.model.get('bioguide_id')].zip4;
+        data['$ADDRESS_ZIP4'] = zip4;
+      }
       $.ajax({
         url: config.CONTACT_CONGRESS_SERVER + '/fill-out-form',
         type: 'post',
