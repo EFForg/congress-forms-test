@@ -30,8 +30,9 @@ require([
   'views/form',
   'views/legislator_actions',
   'views/legislator_status',
-  'views/last_problem'
-], function($, Mustache, qs, Events, marked, fancybox, LegislatorModel, LastProblemModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView, LastProblemView){
+  'views/last_problem',
+  'views/comments'
+], function($, Mustache, qs, Events, marked, fancybox, LegislatorModel, LastProblemModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView, LastProblemView, Comments){
 
   // Get the legislator id from query string 
   var bioguide_id = qs.get().bioguide_id || '';
@@ -57,6 +58,10 @@ require([
 
         var formView = new FormView({model: legislator});
         formView.render();
+
+        var comments = new Comments({model: legislator});
+        comments.render();
+
       }
     })
 
