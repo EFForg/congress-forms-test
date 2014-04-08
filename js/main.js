@@ -21,7 +21,9 @@ require([
   'mustache',
   'querystring',
   'lib/events',
+  'lodash',
   'marked',
+  'data/data',
   'fancybox',
   'models/legislator',
   'models/last_problem',
@@ -32,7 +34,7 @@ require([
   'views/legislator_status',
   'views/last_problem',
   'views/comments'
-], function($, Mustache, qs, Events, marked, fancybox, LegislatorModel, LastProblemModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView, LastProblemView, Comments){
+], function($, Mustache, qs, Events, _, marked, Data, fancybox, LegislatorModel, LastProblemModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView, LastProblemView, Comments){
   console.log(qs.get());
   // Get the legislator id from query string 
   var bioguide_id = qs.get().bioguide_id || '';
@@ -99,9 +101,12 @@ require([
         $.each(idCols, function(index, col) {
           $(col).html('<a href="?bioguide_id=' + $(col).text() + '"">' + $(col).text() + '</a>');
         });
+
+        _.each(Data.legislators, function(legislator, key){
+          $('.legislator-status-container table').append('<tr><td>' + key + '</td><td>--</td><td style="text-align: center"><img src="http://img.shields.io/badge/YAML-not%20found-red.svg" /></td></tr>');
+        });
       }
-    })
-    console.log('markdown');
+    });
   }
 });
 
