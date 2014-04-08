@@ -33,7 +33,7 @@ require([
   'views/last_problem',
   'views/comments'
 ], function($, Mustache, qs, Events, marked, fancybox, LegislatorModel, LastProblemModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView, LastProblemView, Comments){
-
+  console.log(qs.get());
   // Get the legislator id from query string 
   var bioguide_id = qs.get().bioguide_id || '';
 
