@@ -1,9 +1,7 @@
 | Bioguide ID | Website | Recent Success Rate |
 |-------------|---------|:------------:|
 | A000055 | [aderholt.house.gov](http://aderholt.house.gov) | [![A000055 status](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-image/A000055)](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-status/A000055) |
-| A000210 | [andrews.house.gov](https://andrews.house.gov) | [![A000210 status](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-image/A000210)](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-status/A000210) |
 | A000360 | [www.alexander.senate.gov](http://www.alexander.senate.gov) | [![A000360 status](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-image/A000360)](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-status/A000360) |
-| A000361 | [alexander.house.gov](https://alexander.house.gov) | [![A000361 status](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-image/A000361)](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-status/A000361) |
 | A000367 | [amash.house.gov](https://amash.house.gov) | [![A000367 status](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-image/A000367)](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-status/A000367) |
 | A000368 | [www.ayotte.senate.gov](http://www.ayotte.senate.gov) | [![A000368 status](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-image/A000368)](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-status/A000368) |
 | A000369 | [amodei.house.gov](https://amodei.house.gov) | [![A000369 status](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-image/A000369)](http://ec2-54-215-28-56.us-west-1.compute.amazonaws.com:3000/recent-fill-status/A000369) |
