@@ -8,11 +8,11 @@
   display: none;
 }
 
-.additional_info_row{
+.additional_info_row, .fill_additional_info_row{
   display: none;
 }
 
-.info_row{
+.info_row, .fill_info_row{
   cursor: pointer;
 }
 
@@ -34,14 +34,18 @@
   margin-bottom: 20px;
 }
 
-#error_image img{
+.error_image img{
   border: 1px solid gray;
 }
 
-#error_info{
-  display: none;
+.error_info{
+  width: 1000px;
 }
 
 img.last_problem {
   width: 100%;
+}
+
+tr.fill_info_row .alert{
+  padding: 4px;
 }
