@@ -26,15 +26,16 @@ require([
   'data/data',
   'fancybox',
   'models/legislator',
-  'models/last_problem',
+  'models/fill_attempt',
   'collections/legislator_actions',
+  'collections/fill_attempts',
   'views/legislator',
   'views/form',
   'views/legislator_actions',
   'views/legislator_status',
-  'views/last_problem',
+  'views/fill_attempts',
   'views/comments'
-], function($, Mustache, qs, Events, _, marked, Data, fancybox, LegislatorModel, LastProblemModel, LegislatorActionCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView, LastProblemView, Comments){
+], function($, Mustache, qs, Events, _, marked, Data, fancybox, LegislatorModel, FillAttemptModel, LegislatorActionCollection, FillAttemptCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView, FillAttemptsView, Comments){
   console.log(qs.get());
   // Get the legislator id from query string 
   var bioguide_id = qs.get().bioguide_id || '';
@@ -48,7 +49,7 @@ require([
     var legislator_actions = new LegislatorActionCollection({
       bioguide_id: bioguide_id
     });
-    var last_problem = new LastProblemModel({
+    var fill_attempts = new FillAttemptCollection({
       bioguide_id: bioguide_id
     });
 
@@ -75,19 +76,20 @@ require([
         legislator_actions_view.render();
       }
     });
-    var showLastError = function () {
+    var showFillStatuses = function () {
       console.log('Reloading last error');
-      last_problem.fetch({
-        success: function(last_problem){
-          var last_problem_view = new LastProblemView({
-            model: last_problem
+      fill_attempts.fetch({
+        success: function(fill_attempts){
+          console.log(fill_attempts);
+          var fill_attempts_view = new FillAttemptsView({
+            collection: fill_attempts
           });
-          last_problem_view.render();
+          fill_attempts_view.render();
         }
       });
     }
-    Events.on('BIOGUIDE_ERROR', showLastError);
-    showLastError();
+    Events.on('BIOGUIDE_ERROR', showFillStatuses);
+    showFillStatuses();
   } else {
     //LegislatorStatusView
     $('.legislator-status-container').show();

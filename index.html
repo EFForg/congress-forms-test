@@ -76,17 +76,21 @@
     </div>
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">Last Error or Failure</h3>
+        <h3 class="panel-title">Recent Fill Attempts</h3>
       </div>
       <div class="panel-body">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-          <div id='error_status'>
-          </div>
-          <pre id='error_info'>
-          </pre>
-          <div id='error_image'> 
-          </div>
-        </div>
+        <table class='table'>
+          <thead>
+            <th>
+              Time
+            </th>
+            <th>
+              Status
+            </th>
+          </thead>
+          <tbody class='fill-attempts-container table-bordered'>
+          </tbody>
+        </table>
       </div>
     </div>
 
