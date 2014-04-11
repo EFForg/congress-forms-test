@@ -149,7 +149,7 @@ define([
         success: function( data ) {
           console.log(arguments);
           if(data.status === 'captcha_needed') {
-            $('.captcha-container').append(Mustache.render(captchaTemplate, {captcha_url: data.url}));
+            $('.captcha-container').append(Mustache.render(captchaTemplate, {captcha_url: config.CONTACT_CONGRESS_SERVER + data.url}));
           } else if (data.status === 'error') {
             that.$el.find('input, textarea, button, select').removeAttr('disabled');
             $('.form-error').slideDown(200).delay(4500).slideUp(200);
