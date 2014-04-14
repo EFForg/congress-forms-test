@@ -254,7 +254,7 @@ define({
         "example_address": "300 Centerville Road",
         "example_city": "Newville",
         "example_state": "PA",
-        "zip5": "20886",
+        "zip5": "02886",
         "zip4": "0212",
         "example_district": "11",
         "type": "Rep",
@@ -652,7 +652,7 @@ define({
     },
     "C001064": {
         "example_address": "26111 Antonio Parkway",
-        "example_city": "Rancho Santa Margari",
+        "example_city": "Rancho Santa Margarita",
         "example_state": "CA",
         "zip5": "92688",
         "zip4": "5597",
@@ -708,7 +708,7 @@ define({
         "zip4": "4258",
         "example_district": "7",
         "type": "Rep",
-        "name": "Andr_ Carson"
+        "name": "Andre Carson"
     },
     "C001075": {
         "example_address": "PO Box 426 ",
@@ -868,7 +868,7 @@ define({
         "zip4": "4102",
         "example_district": "29",
         "type": "Rep",
-        "name": "Tony C�rdenas"
+        "name": "Tony Cardenas"
     },
     "C001101": {
         "example_address": "16 Common Street",
@@ -1638,7 +1638,7 @@ define({
         "zip4": "5702",
         "example_district": "15",
         "type": "Rep",
-        "name": "Rub_n Hinojosa"
+        "name": "Ruben Hinojosa"
     },
     "H000874": {
         "example_address": "401 Post Office Road",
@@ -2348,7 +2348,7 @@ define({
         "zip4": "7640",
         "example_district": "3",
         "type": "Rep",
-        "name": "Ben Luj�n"
+        "name": "Ben Lujan"
     },
     "L000571": {
         "example_address": "45 East Loucks Street",
@@ -3558,7 +3558,7 @@ define({
         "zip4": "5331",
         "example_district": "15",
         "type": "Rep",
-        "name": "Jos_ Serrano"
+        "name": "Jose Serrano"
     },
     "S000250": {
         "example_address": "12750 Merit Drive",
@@ -3614,7 +3614,7 @@ define({
         "example_address": "1540 Kuser Road",
         "example_city": "Hamilton Township",
         "example_state": "NJ",
-        "zip5": "8619",
+        "zip5": "08619",
         "zip4": "3828",
         "example_district": "4",
         "type": "Rep",
@@ -3688,7 +3688,7 @@ define({
         "zip4": "6810",
         "example_district": "38",
         "type": "Rep",
-        "name": "Linda S�nchez"
+        "name": "Linda Sanchez"
     },
     "S001157": {
         "example_address": "888 Concord Road Southeast",
@@ -3881,11 +3881,11 @@ define({
         "name": "Kyrsten Sinema"
     },
     "S001192": {
-        "example_address": "7800 Route 201",
-        "example_city": "Magna",
+        "example_address": "136 E South Temple",
+        "example_city": "Salt Lake City",
         "example_state": "UT",
-        "zip5": "84088",
-        "zip4": "4314",
+        "zip5": "84111",
+        "zip4": "1180",
         "example_district": "2",
         "type": "Rep",
         "name": "Chris Stewart"
@@ -4058,7 +4058,7 @@ define({
         "zip4": "1010",
         "example_district": "7",
         "type": "Rep",
-        "name": "Nydia Vel�zquez"
+        "name": "Nydia Velazquez"
     },
     "V000108": {
         "example_address": "100 East Michigan Boulevard",
@@ -4379,6 +4379,1006 @@ define({
         "example_district": "3",
         "type": "Rep",
         "name": "Ted Yoho"
+    },
+    "A000360": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "TN",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Lamar Alexander"
+    },
+    "A000368": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "NH",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Kelly Ayotte"
+    },
+    "B000575": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MO",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Roy Blunt"
+    },
+    "B000711": {
+        "example_address": "4322 Wilshire Boulevard",
+        "example_city": "Los Angeles",
+        "example_state": "CA",
+        "zip5": "90010",
+        "zip4": "3794",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Barbara Boxer"
+    },
+    "B000944": {
+        "example_address": "61 East Main Street",
+        "example_city": "Wilmington",
+        "example_state": "OH",
+        "zip5": "45177",
+        "zip4": "2330",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Sherrod Brown"
+    },
+    "B001135": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "NC",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Richard Burr"
+    },
+    "B001230": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "WI",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Tammy Baldwin"
+    },
+    "B001236": {
+        "example_address": "1011 George Wallace Boulevard",
+        "example_city": "Tuscumbia",
+        "example_state": "AR",
+        "zip5": "35674",
+        "zip4": "1726",
+        "example_district": "",
+        "type": "Sen",
+        "name": "John Boozman"
+    },
+    "B001261": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "WY",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "John Barrasso"
+    },
+    "B001265": {
+        "example_address": "540 Water Street",
+        "example_city": "Ketchikan",
+        "example_state": "AK",
+        "zip5": "99901",
+        "zip4": "6378",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Mark Begich"
+    },
+    "B001267": {
+        "example_address": "1661 North Swan Road",
+        "example_city": "Tucson",
+        "example_state": "CO",
+        "zip5": "85712",
+        "zip4": "4051",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Michael Bennet"
+    },
+    "B001277": {
+        "example_address": "1661 North Swan Road",
+        "example_city": "Tucson",
+        "example_state": "CT",
+        "zip5": "85712",
+        "zip4": "4051",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Richard Blumenthal"
+    },
+    "B001288": {
+        "example_address": "108 Lacey Road",
+        "example_city": "Lacey Township",
+        "example_state": "NJ",
+        "zip5": "08759",
+        "zip4": "1331",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Cory Booker"
+    },
+    "C000127": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "WA",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Maria Cantwell"
+    },
+    "C000141": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MD",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Benjamin Cardin"
+    },
+    "C000174": {
+        "example_address": "1661 North Swan Road",
+        "example_city": "Tucson",
+        "example_state": "DE",
+        "zip5": "85712",
+        "zip4": "4051",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Thomas Carper"
+    },
+    "C000286": {
+        "example_address": "100 Peachtree Street Northwest",
+        "example_city": "Atlanta",
+        "example_state": "GA",
+        "zip5": "30303",
+        "zip4": "1906",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Saxby Chambliss"
+    },
+    "C000542": {
+        "example_address": "1819 Pepperell Parkway",
+        "example_city": "Opelika",
+        "example_state": "IN",
+        "zip5": "36801",
+        "zip4": "5476",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Daniel Coats"
+    },
+    "C000560": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "OK",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Thomas Coburn"
+    },
+    "C000567": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MS",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Thad Cochran"
+    },
+    "C000880": {
+        "example_address": "221 Main Street",
+        "example_city": "Hartford",
+        "example_state": "ID",
+        "zip5": "06106",
+        "zip4": "1890",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Michael Crapo"
+    },
+    "C001035": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "ME",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Susan Collins"
+    },
+    "C001056": {
+        "example_address": "1805 East Ruben M Torres Sr Boulevard",
+        "example_city": "Brownsville",
+        "example_state": "TX",
+        "zip5": "78521",
+        "zip4": "1115",
+        "example_district": "",
+        "type": "Sen",
+        "name": "John Cornyn"
+    },
+    "C001070": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "PA",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Robert Casey"
+    },
+    "C001071": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "TN",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Bob Corker"
+    },
+    "C001088": {
+        "example_address": "1661 North Swan Road",
+        "example_city": "Tucson",
+        "example_state": "DE",
+        "zip5": "85712",
+        "zip4": "4051",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Chris Coons"
+    },
+    "C001098": {
+        "example_address": "1805 East Ruben M Torres Sr Boulevard",
+        "example_city": "Brownsville",
+        "example_state": "TX",
+        "zip5": "78521",
+        "zip4": "1115",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Ted Cruz"
+    },
+    "D000563": {
+        "example_address": "3235 147th Street",
+        "example_city": "Midlothian",
+        "example_state": "IL",
+        "zip5": "60445",
+        "zip4": "3656",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Richard Durbin"
+    },
+    "D000607": {
+        "example_address": "1819 Pepperell Parkway",
+        "example_city": "Opelika",
+        "example_state": "IN",
+        "zip5": "36801",
+        "zip4": "5476",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Joe Donnelly"
+    },
+    "E000285": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "WY",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Michael Enzi"
+    },
+    "F000062": {
+        "example_address": "4322 Wilshire Boulevard",
+        "example_city": "Los Angeles",
+        "example_state": "CA",
+        "zip5": "90010",
+        "zip4": "3794",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Dianne Feinstein"
+    },
+    "F000444": {
+        "example_address": "1011 George Wallace Boulevard",
+        "example_city": "Tuscumbia",
+        "example_state": "AZ",
+        "zip5": "35674",
+        "zip4": "1726",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Jeff Flake"
+    },
+    "F000457": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MN",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Alan Franken"
+    },
+    "F000463": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "NE",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Deb Fischer"
+    },
+    "G000359": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "SC",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Lindsey Graham"
+    },
+    "G000386": {
+        "example_address": "221 Main Street",
+        "example_city": "Hartford",
+        "example_state": "IA",
+        "zip5": "06106",
+        "zip4": "1890",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Charles Grassley"
+    },
+    "G000555": {
+        "example_address": "1231 Lafayette Avenue",
+        "example_city": "Bronx",
+        "example_state": "NY",
+        "zip5": "10474",
+        "zip4": "5331",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Kirsten Gillibrand"
+    },
+    "H000206": {
+        "example_address": "221 Main Street",
+        "example_city": "Hartford",
+        "example_state": "IA",
+        "zip5": "06106",
+        "zip4": "1890",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Thomas Harkin"
+    },
+    "H000338": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "UT",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Orrin Hatch"
+    },
+    "H001041": {
+        "example_address": "108 Lacey Road",
+        "example_city": "Lacey Township",
+        "example_state": "NV",
+        "zip5": "08759",
+        "zip4": "1331",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Dean Heller"
+    },
+    "H001042": {
+        "example_address": "221 Main Street",
+        "example_city": "Hartford",
+        "example_state": "HI",
+        "zip5": "06106",
+        "zip4": "1890",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Mazie Hirono"
+    },
+    "H001046": {
+        "example_address": "108 Lacey Road",
+        "example_city": "Lacey Township",
+        "example_state": "NM",
+        "zip5": "08759",
+        "zip4": "1331",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Martin Heinrich"
+    },
+    "H001049": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "NC",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Kay Hagan"
+    },
+    "H001061": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "ND",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "John Hoeven"
+    },
+    "H001069": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "ND",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Heidi Heitkamp"
+    },
+    "I000024": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "OK",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "James Inhofe"
+    },
+    "I000055": {
+        "example_address": "100 Peachtree Street Northwest",
+        "example_city": "Atlanta",
+        "example_state": "GA",
+        "zip5": "30303",
+        "zip4": "1906",
+        "example_district": "",
+        "type": "Sen",
+        "name": "John Isakson"
+    },
+    "J000177": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "SD",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Tim Johnson"
+    },
+    "J000291": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "NE",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Mike Johanns"
+    },
+    "J000293": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "WI",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Ron Johnson"
+    },
+    "K000360": {
+        "example_address": "3235 147th Street",
+        "example_city": "Midlothian",
+        "example_state": "IL",
+        "zip5": "60445",
+        "zip4": "3656",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Mark Kirk"
+    },
+    "K000367": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MN",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Amy Klobuchar"
+    },
+    "K000383": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "ME",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Angus King"
+    },
+    "K000384": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "VA",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Timothy Kaine"
+    },
+    "L000174": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "VT",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Patrick Leahy"
+    },
+    "L000261": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MI",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Carl Levin"
+    },
+    "L000550": {
+        "example_address": "2021 Lakeshore Drive",
+        "example_city": "New Orleans",
+        "example_state": "LA",
+        "zip5": "70122",
+        "zip4": "3501",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Mary Landrieu"
+    },
+    "L000577": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "UT",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Mike Lee"
+    },
+    "M000133": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MA",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Edward Markey"
+    },
+    "M000303": {
+        "example_address": "1011 George Wallace Boulevard",
+        "example_city": "Tuscumbia",
+        "example_state": "AZ",
+        "zip5": "35674",
+        "zip4": "1726",
+        "example_district": "",
+        "type": "Sen",
+        "name": "John McCain"
+    },
+    "M000355": {
+        "example_address": "1819 Pepperell Parkway",
+        "example_city": "Opelika",
+        "example_state": "KY",
+        "zip5": "36801",
+        "zip4": "5476",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Mitch McConnell"
+    },
+    "M000639": {
+        "example_address": "108 Lacey Road",
+        "example_city": "Lacey Township",
+        "example_state": "NJ",
+        "zip5": "08759",
+        "zip4": "1331",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Robert Menendez"
+    },
+    "M000702": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MD",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Barbara Mikulski"
+    },
+    "M000934": {
+        "example_address": "1819 Pepperell Parkway",
+        "example_city": "Opelika",
+        "example_state": "KS",
+        "zip5": "36801",
+        "zip4": "5476",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Jerry Moran"
+    },
+    "M001111": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "WA",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Patty Murray"
+    },
+    "M001153": {
+        "example_address": "540 Water Street",
+        "example_city": "Ketchikan",
+        "example_state": "AK",
+        "zip5": "99901",
+        "zip4": "6378",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Lisa Murkowski"
+    },
+    "M001169": {
+        "example_address": "1661 North Swan Road",
+        "example_city": "Tucson",
+        "example_state": "CT",
+        "zip5": "85712",
+        "zip4": "4051",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Christopher Murphy"
+    },
+    "M001170": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MO",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Claire McCaskill"
+    },
+    "M001176": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "OR",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Jeff Merkley"
+    },
+    "M001183": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "WV",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Joe Manchin"
+    },
+    "N000032": {
+        "example_address": "3000 North Ponce De Leon Boulevard",
+        "example_city": "St. Augustine",
+        "example_state": "FL",
+        "zip5": "32084",
+        "zip4": "8600",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Bill Nelson"
+    },
+    "P000449": {
+        "example_address": "61 East Main Street",
+        "example_city": "Wilmington",
+        "example_state": "OH",
+        "zip5": "45177",
+        "zip4": "2330",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Robert Portman"
+    },
+    "P000590": {
+        "example_address": "1011 George Wallace Boulevard",
+        "example_city": "Tuscumbia",
+        "example_state": "AR",
+        "zip5": "35674",
+        "zip4": "1726",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Mark Pryor"
+    },
+    "P000603": {
+        "example_address": "1819 Pepperell Parkway",
+        "example_city": "Opelika",
+        "example_state": "KY",
+        "zip5": "36801",
+        "zip4": "5476",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Rand Paul"
+    },
+    "R000122": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "RI",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "John Reed"
+    },
+    "R000146": {
+        "example_address": "108 Lacey Road",
+        "example_city": "Lacey Township",
+        "example_state": "NV",
+        "zip5": "08759",
+        "zip4": "1331",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Harry Reid"
+    },
+    "R000307": {
+        "example_address": "1819 Pepperell Parkway",
+        "example_city": "Opelika",
+        "example_state": "KS",
+        "zip5": "36801",
+        "zip4": "5476",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Pat Roberts"
+    },
+    "R000361": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "WV",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "John Rockefeller"
+    },
+    "R000584": {
+        "example_address": "221 Main Street",
+        "example_city": "Hartford",
+        "example_state": "ID",
+        "zip5": "06106",
+        "zip4": "1890",
+        "example_district": "",
+        "type": "Sen",
+        "name": "James Risch"
+    },
+    "R000595": {
+        "example_address": "3000 North Ponce De Leon Boulevard",
+        "example_city": "St. Augustine",
+        "example_state": "FL",
+        "zip5": "32084",
+        "zip4": "8600",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Marco Rubio"
+    },
+    "S000033": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "VT",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Bernard Sanders"
+    },
+    "S000148": {
+        "example_address": "1231 Lafayette Avenue",
+        "example_city": "Bronx",
+        "example_state": "NY",
+        "zip5": "10474",
+        "zip4": "5331",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Charles Schumer"
+    },
+    "S000320": {
+        "example_address": "1011 George Wallace Boulevard",
+        "example_city": "Tuscumbia",
+        "example_state": "AL",
+        "zip5": "35674",
+        "zip4": "1726",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Richard Shelby"
+    },
+    "S000770": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MI",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Debbie Stabenow"
+    },
+    "S001141": {
+        "example_address": "1011 George Wallace Boulevard",
+        "example_city": "Tuscumbia",
+        "example_state": "AL",
+        "zip5": "35674",
+        "zip4": "1726",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Jefferson Sessions"
+    },
+    "S001181": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "NH",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Jeanne Shaheen"
+    },
+    "S001184": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "SC",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Tim Scott"
+    },
+    "S001194": {
+        "example_address": "221 Main Street",
+        "example_city": "Hartford",
+        "example_state": "HI",
+        "zip5": "06106",
+        "zip4": "1890",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Brian Schatz"
+    },
+    "T000250": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "SD",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "John Thune"
+    },
+    "T000461": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "PA",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Patrick Toomey"
+    },
+    "T000464": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MT",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Jon Tester"
+    },
+    "U000038": {
+        "example_address": "1661 North Swan Road",
+        "example_city": "Tucson",
+        "example_state": "CO",
+        "zip5": "85712",
+        "zip4": "4051",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Mark Udall"
+    },
+    "U000039": {
+        "example_address": "108 Lacey Road",
+        "example_city": "Lacey Township",
+        "example_state": "NM",
+        "zip5": "08759",
+        "zip4": "1331",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Tom Udall"
+    },
+    "V000127": {
+        "example_address": "2021 Lakeshore Drive",
+        "example_city": "New Orleans",
+        "example_state": "LA",
+        "zip5": "70122",
+        "zip4": "3501",
+        "example_district": "",
+        "type": "Sen",
+        "name": "David Vitter"
+    },
+    "W000437": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MS",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Roger Wicker"
+    },
+    "W000779": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "OR",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Ron Wyden"
+    },
+    "W000802": {
+        "example_address": "333 F Street",
+        "example_city": "Chula Vista",
+        "example_state": "RI",
+        "zip5": "91910",
+        "zip4": "2624",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Sheldon Whitehouse"
+    },
+    "W000805": {
+        "example_address": "1726 Kingsley Avenue",
+        "example_city": "Orange Park",
+        "example_state": "VA",
+        "zip5": "32073",
+        "zip4": "4411",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Mark Warner"
+    },
+    "W000817": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MA",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "Elizabeth Warren"
+    },
+    "W000818": {
+        "example_address": "110 West Reynolds Street",
+        "example_city": "Plant City",
+        "example_state": "MT",
+        "zip5": "33563",
+        "zip4": "3377",
+        "example_district": "",
+        "type": "Sen",
+        "name": "John Walsh"
     }
 }
 });
