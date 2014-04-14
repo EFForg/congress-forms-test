@@ -8,6 +8,7 @@ require.config({
     text: 'https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text',
     marked: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.1/marked.min',
     fancybox: 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack',
+    async: 'lib/async',
     jsyaml: 'lib/js-yaml.min',
     moment: 'lib/moment.min',
     templates: '../templates',
@@ -17,6 +18,7 @@ require.config({
 });
 
 require([
+  'config',
   'jquery',
   'mustache',
   'querystring',
@@ -25,6 +27,7 @@ require([
   'marked',
   'data/data',
   'fancybox',
+  'async',
   'models/legislator',
   'models/fill_attempt',
   'collections/legislator_actions',
@@ -34,8 +37,33 @@ require([
   'views/legislator_actions',
   'views/legislator_status',
   'views/fill_attempts',
-  'views/comments'
-], function($, Mustache, qs, Events, _, marked, Data, fancybox, LegislatorModel, FillAttemptModel, LegislatorActionCollection, FillAttemptCollection, LegislatorView, FormView, LegislatorActionsView, LegislatorStatusView, FillAttemptsView, Comments){
+  'views/comments',
+  'text!templates/legislator_status.html',
+  'text!templates/legislator_status_row.html'
+], function(
+    config,
+    $,
+    Mustache,
+    qs,
+    Events,
+    _,
+    marked,
+    Data,
+    fancybox,
+    async,
+    LegislatorModel,
+    FillAttemptModel,
+    LegislatorActionCollection,
+    FillAttemptCollection,
+    LegislatorView,
+    FormView,
+    LegislatorActionsView,
+    LegislatorStatusView,
+    FillAttemptsView,
+    Comments,
+    legislatorStatusTemplate,
+    legislatorStatusRowTemplate
+  ){
   console.log(qs.get());
   // Get the legislator id from query string 
   var bioguide_id = qs.get().bioguide_id || '';
@@ -92,22 +120,63 @@ require([
     showFillStatuses();
   } else {
     //LegislatorStatusView
+    console.log(_.keys(Data.legislators).length);
     $('.legislator-status-container').show();
-    $.ajax({
-      url: 'status.md',
-      success: function (res) {
-        $('.legislator-status-container .status-container').html(marked(res));
-        $('.legislator-status-container table').addClass('table table-striped');
-        var idCols = $('.legislator-status-container tr td:first-child');
-        console.log(idCols);
-        $.each(idCols, function(index, col) {
-          $(col).html('<a href="?bioguide_id=' + $(col).text() + '"">' + $(col).text() + '</a>');
+    async.parallel({
+      congress_forms: function(cb){
+        $.ajax({
+          url: config.CONTACT_CONGRESS_SERVER + '/list-congress-members',
+          success: function (legislators) {
+            cb(null, legislators);
+            return;
+          }
         });
-
-        _.each(Data.legislators, function(legislator, key){
-          $('.legislator-status-container table').append('<tr><td>' + key + '</td><td>--</td><td style="text-align: center"><img src="http://img.shields.io/badge/YAML-not%20found-red.svg" /></td></tr>');
+      },
+      sunlight: function(cb){
+        $.ajax({
+          url: 'https://congress.api.sunlightfoundation.com/legislators?per_page=all&apikey=' + config.SUNLIGHT_API_KEY,
+          success: function (legislator_obj) {
+            cb(null, legislator_obj.results);
+            return;
+          } 
         });
       }
+    }, function(err, results){
+      var current_legislators = _.object(_.map(results.sunlight, function(l){ return l.bioguide_id }),results.sunlight);
+      var legislators = _.object(_.map(results.congress_forms, function(l){return l.bioguide_id}),results.congress_forms);
+
+      var current_obj = _.map(current_legislators, function(current_legislator){
+        if(current_legislator.bioguide_id in legislators){
+          return legislators[current_legislator.bioguide_id];
+        } else {
+          return {
+            form_domain_url: current_legislator.website,
+            bioguide_id: current_legislator.bioguide_id
+          }
+        }
+      });
+
+      var current_legislators_sorted = _.sortBy(_.values(current_obj), function(legislator){
+        return legislator.bioguide_id;
+      });
+
+      var former_legislators_arr = _.difference(_.keys(legislators), _.keys(current_legislators)).sort();
+      var former_legislators = _.map(former_legislators_arr, function(former_bioguide_id){
+        return legislators[former_bioguide_id];
+      });
+
+      var legislator_render_row = function(legislator){
+        return Mustache.render(legislatorStatusRowTemplate, {
+          congress_forms_server: config.CONTACT_CONGRESS_SERVER,
+          link: "<a href='" + legislator.form_domain_url + "'>" + legislator.form_domain_url.replace("http://","").replace("https://","") + "</a>",
+          bioguide_id: legislator.bioguide_id
+        });
+      }
+      $('#current-legislators.legislator-status-container .status-container').html(Mustache.render(legislatorStatusTemplate));
+      $('#current-legislators.legislator-status-container tbody').html(_.map(current_legislators_sorted, legislator_render_row).join(""));
+      $('#former-legislators.legislator-status-container .status-container').html(Mustache.render(legislatorStatusTemplate));
+      $('#former-legislators.legislator-status-container tbody').html(_.map(former_legislators, legislator_render_row).join(""));
+
     });
   }
 });
