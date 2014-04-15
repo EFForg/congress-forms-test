@@ -113,18 +113,25 @@ require([
 
         var comments = new Comments({model: legislator});
         comments.render();
-
+        legislator_actions.fetch({
+          success: function(legislator_actions){
+            var legislator_actions_view = new LegislatorActionsView({
+              collection: legislator_actions
+            });
+            // TODO - start refactoring these hacks
+            // This one pulls the contact form url from the YAML file
+            console.log(legislator_actions);
+            if(legislator_actions.models[0] && legislator_actions.models[0].attributes.action === 'visit') {
+              $('.contact-form-url').attr('href', legislator_actions.models[0].attributes.value);
+              // Will remain the sunlight labs url if none set
+            }
+            legislator_actions_view.render();
+          }
+        });
       }
     })
 
-    legislator_actions.fetch({
-      success: function(legislator_actions){
-        var legislator_actions_view = new LegislatorActionsView({
-          collection: legislator_actions
-        });
-        legislator_actions_view.render();
-      }
-    });
+
     var showFillStatuses = function () {
       console.log('Reloading last error');
       fill_attempts.fetch({
