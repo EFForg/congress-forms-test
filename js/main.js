@@ -24,6 +24,7 @@ require([
   'querystring',
   'lib/events',
   'lodash',
+  'jsyaml',
   'marked',
   'data/data',
   'fancybox',
@@ -47,6 +48,7 @@ require([
     qs,
     Events,
     _,
+    jsyaml, 
     marked,
     Data,
     fancybox,
@@ -67,6 +69,25 @@ require([
   console.log(qs.get());
   // Get the legislator id from query string 
   var bioguide_id = qs.get().bioguide_id || '';
+
+  // Bring in Example data from YAML file
+  $.ajax({
+    url: 'http://corsgithub.herokuapp.com/unitedstates/contact-congress/master/support/variables.yaml',
+    success: function (exampleYaml) {
+      var exampleData = jsyaml.load(exampleYaml);
+      var examples = [];
+      _.each(exampleData, function(example, key) {
+        examples.push({
+          name: key,
+          example: example.example
+        });
+      });
+      // Turn example object into array
+      config.EXAMPLE_DATA = examples;
+      console.log(config.EXAMPLE_DATA);
+      return;
+    }
+  });
 
   if(bioguide_id.length > 0) {
     $('.bioguide-form-container').show();

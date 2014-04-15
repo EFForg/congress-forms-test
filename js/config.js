@@ -43,6 +43,7 @@ define(['querystring'], function(qs) {
       }
     ],
     // TODO - merge with above array
+    // This data is now legacy, but will keep for now as a fallback
     EXAMPLE_DATA: [
       {
         name: '$NAME_FIRST',
