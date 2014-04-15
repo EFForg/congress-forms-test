@@ -64,7 +64,7 @@ define([
         type: 'post',
         data: {bio_ids: [bioguide_id]},
         success: function( data ) {
-          that.$el.html(Mustache.render(formTemplate, {}));
+          that.$el.html(Mustache.render(formTemplate, {bioguide_id: bioguide_id}));
 
           // Get the required actions from contact congress
           var required_actions = data[bioguide_id].required_actions;
