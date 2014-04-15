@@ -1831,11 +1831,11 @@ define({
         "name": "Janice Hahn"
     },
     "H001064": {
-        "example_address": "811 Main Street",
-        "example_city": "Buckley",
+        "example_address": "420 College St SE",
+        "example_city": "Lacey",
         "example_state": "WA",
-        "zip5": "98321",
-        "zip4": "8259",
+        "zip5": "98503",
+        "zip4": "1238",
         "example_district": "10",
         "type": "Rep",
         "name": "Denny Heck"
