@@ -210,6 +210,9 @@ define([
         var zip5 =  Data.legislators[that.model.get('bioguide_id')].zip5;
         $('[type="text"][name="$ADDRESS_ZIP5"]').val(zip5);
 
+        var street =  Data.legislators[that.model.get('bioguide_id')].example_address;
+        $('[type="text"][name="$ADDRESS_STREET"]').val(street);
+
         var zip4 =  Data.legislators[that.model.get('bioguide_id')].zip4;
         $('[type="text"][name="$ADDRESS_ZIP4"]').val(zip4);
       }
