@@ -3,9 +3,9 @@
     {{time}}
   </td>
   <td>
-    <span class="alert alert-danger">  
+    <span class="alert alert-danger">
       {{status}}
-    </span>  
+    </span>
   </td>
 </tr>
 <tr class='fill_additional_info_row {{tr_class}}' data-id='{{uid}}'>
@@ -13,8 +13,10 @@
     <pre class='error_info'>
       {{error}}
     </pre>
-    <div class='error_image'> 
+    {{#screenshot_url}}
+    <div class='error_image'>
       <img src='{{screenshot_url}}'>
     </div>
+    {{/screenshot_url}}
   </td>
 </tr>
