@@ -179,8 +179,7 @@ require([
         } else {
           return {
             form_domain_url: current_legislator.website,
-            bioguide_id: current_legislator.bioguide_id,
-            recent_fill_image: "YAML-not%20found-red.svg"
+            bioguide_id: current_legislator.bioguide_id
           }
         }
       });
@@ -198,8 +197,7 @@ require([
         return Mustache.render(legislatorStatusRowTemplate, {
           congress_forms_server: config.CONTACT_CONGRESS_SERVER,
           link: "<a href='" + legislator.form_domain_url + "'>" + legislator.form_domain_url.replace("http://","").replace("https://","") + "</a>",
-          bioguide_id: legislator.bioguide_id,
-          image_url: 'http://img.shields.io/badge/' + legislator.recent_fill_image
+          bioguide_id: legislator.bioguide_id
         });
       }
       $('#current-legislators.legislator-status-container .status-container').html(Mustache.render(legislatorStatusTemplate));
