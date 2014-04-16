@@ -18,7 +18,7 @@ define([
           time: moment(fill_attempt.attributes.run_at).format('MMMM Do YYYY, h:mm:ss a'),
           uid: x,
           tr_class: ++x % 2 == 0 ? "active" : "",
-          screenshot_url: config.CONTACT_CONGRESS_SERVER + "/" + fill_attempt.attributes.screenshot
+          screenshot_url: (fill_attempt.attributes.screenshot ? (config.CONTACT_CONGRESS_SERVER + "/" + fill_attempt.attributes.screenshot) : null)
         }, fill_attempt.attributes);
         if(fill_attempt.attributes.status == "error" || fill_attempt.attributes.status == "failure"){
           return Mustache.render(fillAttemptErrorTemplate, vals);
