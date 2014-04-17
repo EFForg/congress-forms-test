@@ -213,6 +213,9 @@ define([
         var street =  Data.legislators[that.model.get('bioguide_id')].example_address;
         $('[type="text"][name="$ADDRESS_STREET"]').val(street);
 
+        var city =  Data.legislators[that.model.get('bioguide_id')].example_city;
+        $('[type="text"][name="$ADDRESS_CITY"]').val(city);
+
         var zip4 =  Data.legislators[that.model.get('bioguide_id')].zip4;
         $('[type="text"][name="$ADDRESS_ZIP4"]').val(zip4);
       }
