@@ -206,18 +206,12 @@ define([
       });
 
       // Legislator specific example data
-      if(Data.legislators[that.model.get('bioguide_id')]) {
-        var zip5 =  Data.legislators[that.model.get('bioguide_id')].zip5;
-        $('[type="text"][name="$ADDRESS_ZIP5"]').val(zip5);
-
-        var street =  Data.legislators[that.model.get('bioguide_id')].example_address;
-        $('[type="text"][name="$ADDRESS_STREET"]').val(street);
-
-        var city =  Data.legislators[that.model.get('bioguide_id')].example_city;
-        $('[type="text"][name="$ADDRESS_CITY"]').val(city);
-
-        var zip4 =  Data.legislators[that.model.get('bioguide_id')].zip4;
-        $('[type="text"][name="$ADDRESS_ZIP4"]').val(zip4);
+      var legislator = Data.legislators[that.model.get('bioguide_id')];
+      if(legislator) {
+        $('[type="text"][name="$ADDRESS_ZIP5"]').val(legislator.zip5);
+        $('[type="text"][name="$ADDRESS_STREET"]').val(legislator.example_address);
+        $('[type="text"][name="$ADDRESS_CITY"]').val(legislator.example_city);
+        $('[type="text"][name="$ADDRESS_ZIP4"]').val(legislator.zip4);
       }
     }
   })
