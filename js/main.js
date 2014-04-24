@@ -3,7 +3,7 @@ require.config({
     jquery: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min',
     lodash: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min',
     underscore: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min',
-    backbone: 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
+    backbone: 'https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
     mustache: 'https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min',
     text: 'https://cdnjs.cloudflare.com/ajax/libs/require-text/2.0.10/text',
     marked: 'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.1/marked.min',
@@ -72,7 +72,7 @@ require([
 
   // Bring in Example data from YAML file
   $.ajax({
-    url: 'http://corsgithub.herokuapp.com/unitedstates/contact-congress/master/support/variables.yaml',
+    url: 'https://corsgithub.herokuapp.com/unitedstates/contact-congress/master/support/variables.yaml',
     success: function (exampleYaml) {
       var exampleData = jsyaml.load(exampleYaml);
       var examples = [];
