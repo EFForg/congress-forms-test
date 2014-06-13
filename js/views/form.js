@@ -12,18 +12,7 @@ define([
   'text!templates/select-input.html',
   'text!templates/captcha.html'
 ], function($, Backbone, _, Mustache, Events, config, qs, Data, formTemplate, plainInputTemplate, selectInputTemplate, captchaTemplate){
-  function makeUID() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-    for( var i=0; i < 10; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return text;
-  }
-
   var LegislatorView = Backbone.View.extend({
-    captcha_uid: makeUID(),
     el: '.form-container',
     events: {
       'submit form.congress-forms-test': 'fillOutForm',
@@ -141,15 +130,18 @@ define([
       $.ajax({
         url: config.CONTACT_CONGRESS_SERVER + '/fill-out-form',
         type: 'post',
+        xhrFields: {
+          withCredentials: true
+        },
         data: {
           bio_id: this.model.get('bioguide_id'),
-          uid: that.captcha_uid,
           fields: data
         },
         success: function( data ) {
           console.log(arguments);
           if(data.status === 'captcha_needed') {
             $('.captcha-container').append(Mustache.render(captchaTemplate, {captcha_url: data.url}));
+            that.current_uid = data.uid;
           } else if (data.status === 'error') {
             that.$el.find('input, textarea, button, select').removeAttr('disabled');
             $('.form-error').slideDown(200).delay(4500).slideUp(200);
@@ -171,8 +163,11 @@ define([
       $.ajax({
         url: config.CONTACT_CONGRESS_SERVER + '/fill-out-captcha',
         type: 'post',
+        xhrFields: {
+          withCredentials: true
+        },
         data: {
-          uid: that.captcha_uid,
+          uid: that.current_uid,
           answer: answer
         },
         success: function( data ) {
@@ -191,11 +186,6 @@ define([
       return false;
     },
     initialize: function () {
-      var that = this;
-      Events.on('BIOGUIDE_ERROR', function () {
-        // If there is a form error, reset the UID
-        that.captcha_uid = makeUID();
-      });
     },
     populateDefaults: function () {
       var that = this;
