@@ -4,6 +4,7 @@ define(['querystring'], function(qs) {
     SUNLIGHT_API_KEY: qs.get().SUNLIGHT_API_KEY || '3d4faf1bbaf64fa4906c6d9f9ce8c2cc',
     CONTACT_CONGRESS_SERVER: 'https://congressforms.eff.org/',
     GITHUB_YAML_DIR: 'https://github.com/unitedstates/contact-congress/blob/master/members/',
+    DEBUG_KEY: qs.get().debug_key || '',
       
     // Default fields for form
 

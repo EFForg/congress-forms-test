@@ -153,7 +153,7 @@ require([
     async.parallel({
       congress_forms: function(cb){
         $.ajax({
-          url: config.CONTACT_CONGRESS_SERVER + '/list-congress-members',
+          url: config.CONTACT_CONGRESS_SERVER + '/list-congress-members?debug_key=' + config.DEBUG_KEY,
           success: function (legislators) {
             cb(null, legislators);
             return;
@@ -196,6 +196,7 @@ require([
       var legislator_render_row = function(legislator){
         return Mustache.render(legislatorStatusRowTemplate, {
           congress_forms_server: config.CONTACT_CONGRESS_SERVER,
+          debug_key: config.DEBUG_KEY,
           link: "<a href='" + legislator.form_domain_url + "'>" + legislator.form_domain_url.replace("http://","").replace("https://","") + "</a>",
           bioguide_id: legislator.bioguide_id
         });
