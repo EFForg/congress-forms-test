@@ -197,7 +197,7 @@ require([
         return Mustache.render(legislatorStatusRowTemplate, {
           congress_forms_server: config.CONTACT_CONGRESS_SERVER,
           debug_key: config.DEBUG_KEY,
-          link: "<a href='" + legislator.form_domain_url + "'>" + legislator.form_domain_url.replace("http://","").replace("https://","") + "</a>",
+          link: (legislator.form_domain_url ? "<a href='" + legislator.form_domain_url + "'>" + legislator.form_domain_url.replace("http://","").replace("https://","") + "</a>" : ""),
           bioguide_id: legislator.bioguide_id
         });
       }
