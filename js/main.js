@@ -13,6 +13,13 @@ require.config({
     moment: 'lib/moment.min',
     templates: '../templates',
     querystring: 'lib/querystring'
+  },
+  config: {
+    text: {
+      useXhr: function(){
+        return true;
+      }
+    }
   }
 
 });
