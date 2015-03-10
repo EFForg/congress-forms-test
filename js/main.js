@@ -192,11 +192,17 @@ require([
       });
 
       var current_legislators_sorted;
+      // switch weather it is ascending or not after every sort
+      var ascending = true;
 
       function sort_by(property){
         current_legislators_sorted = _.sortBy(_.values(current_obj), function(legislator){
-          return legislator[property];
+          return legislator[property] || 0;
         });
+        if(!ascending){
+          current_legislators_sorted = current_legislators_sorted.reverse();
+        }
+        ascending = !ascending;
       }
       sort_by('bioguide_id');
 

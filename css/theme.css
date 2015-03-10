@@ -53,3 +53,7 @@ tr.fill_info_row .alert{
 .label-as-badge{
   border-radius: 1em;
 }
+
+.bioguide_header, .jobs_header{
+  cursor: pointer;
+}
