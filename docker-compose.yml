@@ -1,5 +1,5 @@
 apache:
-  image: httpd:2.4
+  image: hainish/apache-no-cache
   volumes:
     - .:/usr/local/apache2/htdocs/
   ports:
