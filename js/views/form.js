@@ -208,6 +208,10 @@ define([
 
         var zip4 =  Data.legislators[that.model.get('bioguide_id')].zip4;
         $('[type="text"][name="$ADDRESS_ZIP4"]').val(zip4);
+
+        var state =  Data.legislators[that.model.get('bioguide_id')].example_state;
+        $('select[name="$ADDRESS_STATE_POSTAL_ABBREV"]').val(state);
+        $('select[name="$ADDRESS_STATE_FULL"]').val(state);
       }
     }
   })
