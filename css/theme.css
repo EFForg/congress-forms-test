@@ -49,3 +49,7 @@ img.last_problem {
 tr.fill_info_row .alert{
   padding: 4px;
 }
+
+.label-as-badge{
+  border-radius: 1em;
+}

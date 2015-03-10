@@ -205,7 +205,8 @@ require([
           congress_forms_server: config.CONTACT_CONGRESS_SERVER,
           debug_key: config.DEBUG_KEY,
           link: (legislator.form_domain_url ? "<a href='" + legislator.form_domain_url + "'>" + legislator.form_domain_url.replace("http://","").replace("https://","") + "</a>" : ""),
-          bioguide_id: legislator.bioguide_id
+          bioguide_id: legislator.bioguide_id,
+          jobs: legislator.jobs || ""
         });
       }
       $('#current-legislators.legislator-status-container .status-container').html(Mustache.render(legislatorStatusTemplate));
