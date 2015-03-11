@@ -204,7 +204,6 @@ require([
         }
         ascending = !ascending;
       }
-      sort_by('bioguide_id');
 
       function render_rows(){
         $('#current-legislators.legislator-status-container tbody').html(_.map(current_legislators_sorted, legislator_render_row).join(""));
@@ -225,19 +224,20 @@ require([
         });
       }
       $('#current-legislators.legislator-status-container .status-container').html(Mustache.render(legislatorStatusTemplate));
-      render_rows();
+      sort_and_render('bioguide_id')();
       $('#former-legislators.legislator-status-container .status-container').html(Mustache.render(legislatorStatusTemplate));
       $('#former-legislators.legislator-status-container tbody').html(_.map(former_legislators, legislator_render_row).join(""));
 
-      $('.bioguide_header').on('click', function(){
-        sort_by('bioguide_id');
-        render_rows();
-      });
-      $('.jobs_header').on('click', function(){
-        sort_by('jobs');
-        render_rows();
-      });
-
+      function sort_and_render(property){
+        return function(){
+          $('thead td').removeClass('header_sorted');
+          $('.' + property + '_header').addClass('header_sorted');
+          sort_by(property);
+          render_rows();
+        };
+      }
+      $('.bioguide_id_header').on('click', sort_and_render('bioguide_id'));
+      $('.jobs_header').on('click', sort_and_render('jobs'));
     });
   }
 });

@@ -54,6 +54,10 @@ tr.fill_info_row .alert{
   border-radius: 1em;
 }
 
-.bioguide_header, .jobs_header{
+.bioguide_id_header, .jobs_header{
   cursor: pointer;
+}
+
+.header_sorted{
+  font-weight: bold;
 }
