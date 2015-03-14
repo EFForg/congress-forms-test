@@ -40,11 +40,13 @@ require([
   'models/fill_attempt',
   'collections/legislator_actions',
   'collections/fill_attempts',
+  'collections/jobs',
   'views/legislator',
   'views/form',
   'views/legislator_actions',
   'views/legislator_status',
   'views/fill_attempts',
+  'views/jobs',
   'views/comments',
   'text!templates/legislator_status.html',
   'text!templates/legislator_status_row.html'
@@ -64,11 +66,13 @@ require([
     FillAttemptModel,
     LegislatorActionCollection,
     FillAttemptCollection,
+    JobCollection,
     LegislatorView,
     FormView,
     LegislatorActionsView,
     LegislatorStatusView,
     FillAttemptsView,
+    JobsView,
     Comments,
     legislatorStatusTemplate,
     legislatorStatusRowTemplate
@@ -106,6 +110,9 @@ require([
       bioguide_id: bioguide_id
     });
     var fill_attempts = new FillAttemptCollection({
+      bioguide_id: bioguide_id
+    });
+    var jobs = new JobCollection({
       bioguide_id: bioguide_id
     });
 
@@ -151,12 +158,25 @@ require([
         }
       });
     }
+
+    var showJobs = function () {
+      jobs.fetch({
+        success: function(jobs){
+          var jobs_view = new JobsView({
+            collection: jobs
+          });
+          jobs_view.render();
+        }
+      });
+    }
     Events.on('BIOGUIDE_ERROR', showFillStatuses);
     showFillStatuses();
+    showJobs();
   } else {
     //LegislatorStatusView
     console.log(_.keys(Data.legislators).length);
     $('.legislator-status-container').show();
+
     async.parallel({
       congress_forms: function(cb){
         $.ajax({
