@@ -11,7 +11,7 @@ define([
         return Mustache.render(jobTemplate, {
           id: job.id,
           created_at: job.created_at,
-          updated_at: job.updated_at
+          updated_at: job.difference > 10000 ? job.updated_at : ""
         });
       })).join("");
     }

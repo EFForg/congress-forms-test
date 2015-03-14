@@ -6,6 +6,7 @@ define([
     parse: function(resp){
       this.created_at = moment(resp.created_at).format('MMMM Do YYYY, h:mm:ss a');
       this.updated_at = moment(resp.updated_at).format('MMMM Do YYYY, h:mm:ss a');
+      this.difference = moment(resp.updated_at) - moment(resp.created_at);
       return resp;
     }
   });
