@@ -16,14 +16,6 @@ define([
       $('.legislator-container').html(
         Mustache.render(legislatorTemplate, vals)
       );
-      //$(".iframe").fancybox({
-      //  width: 800, // or whatever
-      //  height: 570,
-      //  type: 'iframe',
-      //  iframe : {
-      //      preload: false
-      //  }
-      //});
     }
   })
   return LegislatorView;
