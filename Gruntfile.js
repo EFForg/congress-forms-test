@@ -33,4 +33,6 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+
+  grunt.registerTask('minify', ['uglify:min', 'cssmin:target']);
 };
