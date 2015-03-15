@@ -16,9 +16,21 @@ module.exports = function(grunt){
           }
         })
       }
+    },
+    cssmin: {
+      options: {
+        shorthandCompacting: false,
+        roundingPrecision: -1
+      },
+      target: {
+        files: {
+          'css/bootstrap.min.css': ['lib/bootstrap/bootstrap.css']
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-bower-task');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 };
