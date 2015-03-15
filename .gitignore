@@ -1,4 +1,6 @@
 _site
 *.swp
 bower_components
+lib
+!js/lib
 node_modules
