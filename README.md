@@ -24,5 +24,5 @@ Then run:
 
 Now you can build the assets defined in `bower.json`:
 
-    $ grunt bower
+    $ grunt build
     $ grunt minify

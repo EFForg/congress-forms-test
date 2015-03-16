@@ -8,6 +8,12 @@ module.exports = function(grunt){
         targetDir: "lib"
       }
     },
+    copy: {
+      main: {
+        files: [
+        ]
+      }
+    },
     uglify: {
       min: {
         files: grunt.file.expandMapping(['lib/**/*.js'], 'js/', {
@@ -35,5 +41,6 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
+  grunt.registerTask('build', ['bower:install', 'copy:main']);
   grunt.registerTask('minify', ['uglify:min', 'cssmin:target']);
 };
