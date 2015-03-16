@@ -1,10 +1,9 @@
 define([
   'jquery',
   'backbone',
-  'underscore',
   'mustache',
   'text!templates/job.html'
-], function($, Backbone, _, Mustache, jobTemplate){
+], function($, Backbone, Mustache, jobTemplate){
   var JobsView = Backbone.View.extend({
     render: function () {
       $('.jobs-container').html(this.collection.map(function(job){

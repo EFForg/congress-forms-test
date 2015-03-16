@@ -1,8 +1,7 @@
 require.config({
   paths: {
     jquery: 'lib/jquery/jquery.min',
-    lodash: 'lib/lodash/lodash.min',
-    underscore: 'lib/underscore/underscore.min',
+    underscore: 'lib/lodash/lodash.min',
     backbone: 'lib/backbone/backbone.min',
     mustache: 'lib/mustache/mustache.min',
     text: 'lib/text/text.min',
@@ -29,7 +28,7 @@ require([
   'mustache',
   'querystring',
   'lib/events',
-  'lodash',
+  'underscore',
   'jsyaml',
   'marked',
   'data/data',

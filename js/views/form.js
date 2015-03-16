@@ -1,7 +1,7 @@
 define([
   'jquery',
   'backbone',
-  'lodash',
+  'underscore',
   'mustache',
   'lib/events',
   'config',
