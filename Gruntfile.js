@@ -11,7 +11,17 @@ module.exports = function(grunt){
     copy: {
       main: {
         files: [
-        ]
+          {
+            src: 'bower_components/codemirror/mode/javascript/javascript.js',
+            dest: 'lib/codemirror/mode/javascript/javascript.js'
+          }
+        ],
+        options: {
+          process: function (content, srcpath) {
+            return content.replace(/..\/..\/lib\/codemirror/g,"../../codemirror.min");
+          }
+        }
+
       }
     },
     uglify: {
@@ -30,7 +40,8 @@ module.exports = function(grunt){
       },
       target: {
         files: {
-          'css/bootstrap.min.css': ['lib/bootstrap/bootstrap.css']
+          'css/bootstrap.min.css': ['lib/bootstrap/bootstrap.css'],
+          'js/lib/codemirror/codemirror.min.css': ['lib/codemirror/codemirror.css']
         }
       }
     }
