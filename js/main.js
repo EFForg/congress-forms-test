@@ -48,32 +48,31 @@ require([
   'text!templates/legislator_status.html',
   'text!templates/legislator_status_row.html'
 ], function(
-    config,
-    $,
-    Mustache,
-    qs,
-    Events,
-    _,
-    jsyaml, 
-    marked,
-    Data,
-    async,
-    LegislatorModel,
-    FillAttemptModel,
-    LegislatorActionCollection,
-    FillAttemptCollection,
-    JobCollection,
-    LegislatorView,
-    FormView,
-    LegislatorActionsView,
-    LegislatorStatusView,
-    FillAttemptsView,
-    JobsView,
-    Comments,
-    legislatorStatusTemplate,
-    legislatorStatusRowTemplate
-  ){
-  console.log(qs.get());
+  config,
+  $,
+  Mustache,
+  qs,
+  Events,
+  _,
+  jsyaml,
+  marked,
+  Data,
+  async,
+  LegislatorModel,
+  FillAttemptModel,
+  LegislatorActionCollection,
+  FillAttemptCollection,
+  JobCollection,
+  LegislatorView,
+  FormView,
+  LegislatorActionsView,
+  LegislatorStatusView,
+  FillAttemptsView,
+  JobsView,
+  Comments,
+  legislatorStatusTemplate,
+  legislatorStatusRowTemplate
+){
   // Get the legislator id from query string 
   var bioguide_id = qs.get().bioguide_id || '';
 
@@ -91,7 +90,6 @@ require([
       });
       // Turn example object into array
       config.EXAMPLE_DATA = examples;
-      console.log(config.EXAMPLE_DATA);
       return;
     }
   });
@@ -114,7 +112,6 @@ require([
 
     legislator.fetch({
       success: function (legislator) {
-        console.log(legislator);
         var legislatorView = new LegislatorView({model: legislator});
         legislatorView.render();
 
@@ -130,7 +127,6 @@ require([
             });
             // TODO - start refactoring these hacks
             // This one pulls the contact form url from the YAML file
-            console.log(legislator_actions);
             if(legislator_actions.models[0] && legislator_actions.models[0].attributes.action === 'visit') {
               $('.contact-form-url').attr('href', legislator_actions.models[0].attributes.value);
               // Will remain the sunlight labs url if none set
@@ -143,10 +139,8 @@ require([
 
 
     var showFillStatuses = function () {
-      console.log('Reloading last error');
       fill_attempts.fetch({
         success: function(fill_attempts){
-          console.log(fill_attempts);
           var fill_attempts_view = new FillAttemptsView({
             collection: fill_attempts
           });
@@ -170,7 +164,6 @@ require([
     showJobs();
   } else {
     //LegislatorStatusView
-    console.log(_.keys(Data.legislators).length);
     $('.legislator-status-container').show();
 
     async.parallel({
