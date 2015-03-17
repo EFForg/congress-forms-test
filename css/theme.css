@@ -61,3 +61,7 @@ tr.fill_info_row .alert{
 .header_sorted{
   font-weight: bold;
 }
+
+.CodeMirror{
+  border: 1px solid #DDD;
+}
