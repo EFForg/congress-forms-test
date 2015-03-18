@@ -135,15 +135,31 @@ require([
       }
     })
 
-
+    var asyncify = function(func){
+      return function(cb){
+        func(function(res){
+          cb(null, res);
+        });
+      }
+    };
     var showFillStatuses = function () {
-      fill_attempts.fetch({
-        success: function(fill_attempts){
-          var fill_attempts_view = new FillAttemptsView({
-            collection: fill_attempts
+      async.parallel({
+        fill_attempts: asyncify(function(cb){
+          fill_attempts.fetch({
+            success: cb
+          })
+        }),
+        jobs: asyncify(function(cb){
+          jobs.fetch({
+            success: cb
           });
-          fill_attempts_view.render();
-        }
+        })
+      }, function(){
+        var fill_attempts_view = new FillAttemptsView({
+          collection: fill_attempts,
+          jobs: jobs
+        });
+        fill_attempts_view.render();
       });
     }
 
