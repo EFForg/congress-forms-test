@@ -64,4 +64,13 @@ tr.fill_info_row .alert{
 
 .CodeMirror{
   border: 1px solid #DDD;
+  height: 400px;
+}
+
+.save-job{
+  margin-right: 5px;
+}
+
+#job-buttons{
+  margin-top: 10px;
 }

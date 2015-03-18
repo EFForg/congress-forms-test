@@ -9,11 +9,12 @@ define([
   'jsyaml',
   'text!templates/fill_attempt_error.html',
   'text!templates/fill_attempt_success.html',
+  'text!templates/job_buttons.html',
   'lib/codemirror/codemirror.min',
   'lib/codemirror/mode/javascript/javascript.min'
-], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, CodeMirror, cmj){
+], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, jobButtonsTemplate, CodeMirror, cmj){
   var FillAttemptsView = Backbone.View.extend({
-    el: '#fill-attempts-container',
+    el: '#fill-attempts-panel',
 
     events: {
       "click .load-job": "load_job",
@@ -28,7 +29,7 @@ define([
     render: function () {
       var fill_attempts_view = this;
       var x = 0;
-      this.$el.html(this.collection.map(function(fill_attempt){
+      $('#fill-attempts-container', this.el).html(this.collection.map(function(fill_attempt){
         var job = fill_attempts_view.jobs.get(fill_attempt.get('dj_id'));
         var vals = _.extend({
           time: moment(fill_attempt.attributes.run_at).format('MMMM Do YYYY, h:mm:ss a'),
@@ -54,8 +55,11 @@ define([
       if(!this.editor){
         this.load_editor();
       }
-      var id = Number($(e.currentTarget).data('id'));
-      var job = this.jobs.get(id);
+
+      this.current_job_id = Number($(e.currentTarget).data('id'));
+      $('#current_job_id', this.el).text(this.current_job_id);
+
+      var job = this.jobs.get(this.current_job_id);
       job.fetch({
         success: this.job_loaded
       });
@@ -67,9 +71,13 @@ define([
     },
 
     load_editor: function(){
+      var panel_body = document.querySelector('#fill-attempts-panel .panel-body');
+
+      var job_buttons = Mustache.render(jobButtonsTemplate, {});
+      $(job_buttons).insertBefore(panel_body.firstChild);
+
       this.editor = CodeMirror(function(elt) {
-        var panel_body = document.querySelector('.fill-attempts-panel .panel-body');
-        panel_body.insertBefore(elt, panel_body.firstChild);
+        $(elt).insertAfter(document.querySelector('#editor-panel').lastChild);
       }, {
         lineNumbers: true,
         mode: "javascript"
@@ -79,6 +87,7 @@ define([
     toggle_additional_info: function(e){
       $('.fill_additional_info_row[data-id=' + $(e.currentTarget).data('id') + ']').toggle();
     }
-  })
+  });
+
   return FillAttemptsView;
 });
