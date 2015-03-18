@@ -43,7 +43,6 @@ require([
   'views/legislator_actions',
   'views/legislator_status',
   'views/fill_attempts',
-  'views/jobs',
   'views/comments',
   'text!templates/legislator_status.html',
   'text!templates/legislator_status_row.html'
@@ -68,7 +67,6 @@ require([
   LegislatorActionsView,
   LegislatorStatusView,
   FillAttemptsView,
-  JobsView,
   Comments,
   legislatorStatusTemplate,
   legislatorStatusRowTemplate
@@ -149,19 +147,8 @@ require([
       });
     }
 
-    var showJobs = function () {
-      jobs.fetch({
-        success: function(jobs){
-          var jobs_view = new JobsView({
-            collection: jobs
-          });
-          jobs_view.render();
-        }
-      });
-    }
     Events.on('BIOGUIDE_ERROR', showFillStatuses);
     showFillStatuses();
-    showJobs();
   } else {
     //LegislatorStatusView
     $('.legislator-status-container').show();
