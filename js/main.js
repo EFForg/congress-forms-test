@@ -11,7 +11,8 @@ require.config({
     jsyaml: 'lib/js-yaml/js-yaml.min',
     moment: 'lib/moment/moment.min',
     templates: '../templates',
-    querystring: 'lib/querystring'
+    querystring: 'lib/querystring',
+    growl: 'lib/growl'
   },
   shim: {
     'jquery-growl': {

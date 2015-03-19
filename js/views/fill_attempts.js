@@ -7,12 +7,13 @@ define([
   'querystring',
   'config',
   'jsyaml',
+  'growl',
   'text!templates/fill_attempt_error.html',
   'text!templates/fill_attempt_success.html',
   'text!templates/job_buttons.html',
   'lib/codemirror/codemirror.min',
   'lib/codemirror/mode/javascript/javascript.min'
-], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, jobButtonsTemplate, CodeMirror, cmj){
+], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, growl, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, jobButtonsTemplate, CodeMirror, cmj){
   var FillAttemptsView = Backbone.View.extend({
     el: '#fill-attempts-panel',
 
@@ -69,6 +70,7 @@ define([
     job_loaded: function(job){
       var json = JSON.stringify(job.get('arguments'), null, '\t');
       this.editor.setValue(json);
+      growl.success("Job loaded.");
     },
 
     load_editor: function(){
@@ -91,15 +93,15 @@ define([
       try {
         var arguments = JSON.parse(this.editor.getValue());
       } catch(err) {
-        $.growl.error({ message: "The JSON you've supplied is invalid.  Please look over your JSON string." });
+        growl.error("The JSON you've supplied is invalid.  Please look over your JSON string.");
       }
 
       job.save({ arguments: arguments }, {
         success: function(){
-          $.growl.notice({ title: "Success!", message: "Job #" + String(job.id) + " saved" });
+          growl.success("Job #" + String(job.id) + " saved" );
         },
         error: function(){
-          $.growl.error({ message: "Something went wrong!  Please try again in a moment." });
+          growl.success("Something went wrong!  Please try again in a moment.");
         }
       });
     },
