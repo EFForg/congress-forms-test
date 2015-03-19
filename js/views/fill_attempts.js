@@ -19,6 +19,7 @@ define([
     events: {
       "click .load-job": "load_job",
       "click .fill_info_row": "toggle_additional_info",
+      "click .save-job": "save_job"
     },
 
     initialize: function(options){
@@ -81,6 +82,25 @@ define([
       }, {
         lineNumbers: true,
         mode: "javascript"
+      });
+    },
+
+    save_job: function(e){
+      var job = this.jobs.get(this.current_job_id);
+
+      try {
+        var arguments = JSON.parse(this.editor.getValue());
+      } catch(err) {
+        $.growl.error({ message: "The JSON you've supplied is invalid.  Please look over your JSON string." });
+      }
+
+      job.save({ arguments: arguments }, {
+        success: function(){
+          $.growl.notice({ title: "Success!", message: "Job #" + String(job.id) + " saved" });
+        },
+        error: function(){
+          $.growl.error({ message: "Something went wrong!  Please try again in a moment." });
+        }
       });
     },
 
