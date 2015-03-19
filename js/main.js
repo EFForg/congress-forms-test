@@ -1,6 +1,7 @@
 require.config({
   paths: {
     jquery: 'lib/jquery/jquery.min',
+    'jquery-growl': 'lib/jquery-growl/jquery.growl.min',
     underscore: 'lib/lodash/lodash.min',
     backbone: 'lib/backbone/backbone.min',
     mustache: 'lib/mustache/mustache.min',
@@ -11,6 +12,11 @@ require.config({
     moment: 'lib/moment/moment.min',
     templates: '../templates',
     querystring: 'lib/querystring'
+  },
+  shim: {
+    'jquery-growl': {
+      deps: ['jquery']
+    }
   },
   config: {
     text: {
@@ -25,6 +31,7 @@ require.config({
 require([
   'config',
   'jquery',
+  'jquery-growl',
   'mustache',
   'querystring',
   'lib/events',
@@ -49,6 +56,7 @@ require([
 ], function(
   config,
   $,
+  jqg,
   Mustache,
   qs,
   Events,

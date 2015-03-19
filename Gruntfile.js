@@ -41,7 +41,8 @@ module.exports = function(grunt){
       target: {
         files: {
           'css/bootstrap.min.css': ['lib/bootstrap/bootstrap.css'],
-          'js/lib/codemirror/codemirror.min.css': ['lib/codemirror/codemirror.css']
+          'js/lib/codemirror/codemirror.min.css': ['lib/codemirror/codemirror.css'],
+          'js/lib/jquery-growl/jquery.growl.min.css': ['lib/jquery-growl/jquery.growl.css']
         }
       }
     }

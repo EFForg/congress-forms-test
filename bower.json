@@ -24,6 +24,7 @@
     "moment": "~2.9.0",
     "bootstrap": "~3.3.2",
     "requirejs": "~2.1.16",
-    "codemirror": "~5.0.0"
+    "codemirror": "~5.0.0",
+    "jquery-growl": "~1.2.5"
   }
 }
