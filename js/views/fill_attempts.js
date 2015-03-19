@@ -63,7 +63,10 @@ define([
 
       var job = this.jobs.get(this.current_job_id);
       job.fetch({
-        success: this.job_loaded
+        success: this.job_loaded,
+        error: function(){
+          growl.error("Could not load job.  Please try again in a moment.");
+        }
       });
     },
 
