@@ -19,6 +19,7 @@ define([
 
     events: {
       "click .load-job": "load_job",
+      "click .delete-job": "delete_job",
       "click .fill_info_row": "toggle_additional_info",
       "click .save-job": "save_job"
     },
@@ -26,6 +27,7 @@ define([
     initialize: function(options){
       _.bindAll(this, "job_loaded", "fill_attempt_html");
       this.jobs = options.jobs;
+      jobs = this.jobs;
     },
 
     render: function () {
@@ -41,7 +43,7 @@ define([
         uid: key,
         tr_class: key % 2 == 1 ? "active" : "",
         screenshot_url: fill_attempt.attributes.screenshot,
-        dj_id: job ? job.id : "",
+        job_id: job ? job.id : "",
         error: job ? job.get('last_error') : ""
       }, fill_attempt.attributes);
       if(fill_attempt.attributes.status == "error" || fill_attempt.attributes.status == "failure"){
@@ -67,6 +69,20 @@ define([
         error: function(){
           growl.error("Could not load job.  Please try again in a moment.");
         }
+      });
+    },
+
+    delete_job: function(e){
+      e.stopPropagation();
+
+      var job_id = $(e.currentTarget).data('id');
+      var job = this.jobs.get(Number(job_id));
+      job.destroy({
+        success: function(){
+          growl.success("Job deleted.");
+          $('.job-buttons[data-id="' + job_id + '"], .job-label[data-id="' + job_id + '"]').remove();
+        },
+        error: function(){ growl.success("Job could not be deleted.  Please try again later."); }
       });
     },
 

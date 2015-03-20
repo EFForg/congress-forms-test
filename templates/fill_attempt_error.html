@@ -8,15 +8,15 @@
     </span>
   </td>
   <td>
-    {{#dj_id}}<span class="label label-primary">{{dj_id}}</span>{{/dj_id}}
+    {{#job_id}}<span class="label label-primary job-label" data-id="{{job_id}}">{{job_id}}</span>{{/job_id}}
   </td>
   <td>
-    {{#dj_id}}
-      <div class='btn-group'>
-        <a class="btn btn-default btn-sm load-job" data-id="{{dj_id}}"><i class="icon-up-circled2"></i> Load</a>
-        <a class="btn btn-default btn-sm delete-job" data-id="{{dj_id}}"><i class="icon-trash"></i> Delete</a>
+    {{#job_id}}
+      <div class='btn-group job-buttons' data-id="{{job_id}}">
+        <a class="btn btn-default btn-sm load-job" data-id="{{job_id}}"><i class="icon-up-circled2"></i> Load</a>
+        <a class="btn btn-default btn-sm delete-job" data-id="{{job_id}}"><i class="icon-trash"></i> Delete</a>
       </div>
-    {{/dj_id}}
+    {{/job_id}}
   </td>
 </tr>
 <tr class='fill_additional_info_row {{tr_class}}' data-id='{{uid}}'>
