@@ -24,31 +24,31 @@ define([
     },
 
     initialize: function(options){
-      _.bindAll(this, "job_loaded");
+      _.bindAll(this, "job_loaded", "fill_attempt_html");
       this.jobs = options.jobs;
     },
 
     render: function () {
-      var fill_attempts_view = this;
-      var x = 0;
-      $('#fill-attempts-container', this.el).html(this.collection.map(function(fill_attempt){
-        var job = fill_attempts_view.jobs.get(fill_attempt.get('dj_id'));
-        var vals = _.extend({
-          time: moment(fill_attempt.attributes.run_at).format('MMMM Do YYYY, h:mm:ss a'),
-          uid: x,
-          tr_class: ++x % 2 == 0 ? "active" : "",
-          screenshot_url: fill_attempt.attributes.screenshot,
-          dj_id: job ? job.id : "",
-          error: job ? job.get('last_error') : ""
-        }, fill_attempt.attributes);
-        if(fill_attempt.attributes.status == "error" || fill_attempt.attributes.status == "failure"){
-          return Mustache.render(fillAttemptErrorTemplate, vals);
-        } else {
-          return Mustache.render(fillAttemptSuccessTemplate, vals);
-        }
-      }).join(""));
+      $('#fill-attempts-container', this.el).html(this.collection.map(this.fill_attempt_html).join(""));
 
       $('#actions-last-updated').text(this.collection.last_updated);
+    },
+
+    fill_attempt_html: function(fill_attempt, key){
+      var job = this.jobs.get(fill_attempt.get('dj_id'));
+      var vals = _.extend({
+        time: moment(fill_attempt.attributes.run_at).format('MMMM Do YYYY, h:mm:ss a'),
+        uid: key,
+        tr_class: key % 2 == 1 ? "active" : "",
+        screenshot_url: fill_attempt.attributes.screenshot,
+        dj_id: job ? job.id : "",
+        error: job ? job.get('last_error') : ""
+      }, fill_attempt.attributes);
+      if(fill_attempt.attributes.status == "error" || fill_attempt.attributes.status == "failure"){
+        return Mustache.render(fillAttemptErrorTemplate, vals);
+      } else {
+        return Mustache.render(fillAttemptSuccessTemplate, vals);
+      }
     },
 
     load_job: function(e){
