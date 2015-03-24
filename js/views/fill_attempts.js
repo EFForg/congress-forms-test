@@ -21,11 +21,12 @@ define([
       "click .load-job": "load_job",
       "click .delete-job": "delete_job",
       "click .fill_info_row": "toggle_additional_info",
-      "click .save-job": "save_job"
+      "click .save-job": "save_job",
+      "click .try-job": "try_job"
     },
 
     initialize: function(options){
-      _.bindAll(this, "job_loaded", "fill_attempt_html");
+      _.bindAll(this, "job_loaded", "fill_attempt_html", "try_succeeded");
       this.jobs = options.jobs;
       jobs = this.jobs;
     },
@@ -123,6 +124,25 @@ define([
           growl.success("Something went wrong!  Please try again in a moment.");
         }
       });
+    },
+
+    try_job: function(e){
+      var job = this.jobs.get(this.current_job_id);
+
+      job.perform({
+        success: this.try_succeeded,
+        error: this.try_errored
+      });
+    },
+
+    try_succeeded: function(){
+      growl.success("Job has been performed.");
+      this.fetch();
+      this.render();
+    },
+
+    try_errored: function(){
+      growl.error("Job could not be performed.  Please try again later.");
     },
 
     toggle_additional_info: function(e){

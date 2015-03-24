@@ -13,6 +13,13 @@ define([
       this.updated_at = moment(resp.updated_at).format('MMMM Do YYYY, h:mm:ss a');
       this.difference = moment(resp.updated_at) - moment(resp.created_at);
       return resp;
+    },
+
+    perform: function(options){
+      var ajax_hash = _.extend({
+        url: config.CONTACT_CONGRESS_SERVER + '/perform-job/' + this.id + '?debug_key=' + config.DEBUG_KEY,
+      }, options);
+      $.ajax(ajax_hash);
     }
   });
   return JobModel;
