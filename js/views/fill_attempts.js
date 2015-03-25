@@ -8,12 +8,13 @@ define([
   'config',
   'jsyaml',
   'growl',
+  'async',
   'text!templates/fill_attempt_error.html',
   'text!templates/fill_attempt_success.html',
   'text!templates/job_buttons.html',
   'lib/codemirror/codemirror.min',
   'lib/codemirror/mode/javascript/javascript.min'
-], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, growl, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, jobButtonsTemplate, CodeMirror, cmj){
+], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, growl, async, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, jobButtonsTemplate, CodeMirror, cmj){
   var FillAttemptsView = Backbone.View.extend({
     el: '#fill-attempts-panel',
 
@@ -31,9 +32,30 @@ define([
       jobs = this.jobs;
     },
 
+    fetch_and_render: function(){
+      var that = this;
+      async.parallel({
+        fill_attempts: function(cb){
+          that.collection.fetch({
+            success: function(res){
+              cb(null, res);
+            }
+          });
+        },
+        jobs: function(cb){
+          that.jobs.fetch({
+            success: function(res){
+              cb(null, res);
+            }
+          });
+        }
+      }, function(){
+        that.render();
+      });
+    },
+
     render: function () {
       $('#fill-attempts-container', this.el).html(this.collection.map(this.fill_attempt_html).join(""));
-
       $('#actions-last-updated').text(this.collection.last_updated);
     },
 
@@ -137,8 +159,7 @@ define([
 
     try_succeeded: function(){
       growl.success("Job has been performed.");
-      this.fetch();
-      this.render();
+      this.fetch_and_render();
     },
 
     try_errored: function(){

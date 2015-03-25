@@ -144,36 +144,13 @@ require([
       }
     })
 
-    var asyncify = function(func){
-      return function(cb){
-        func(function(res){
-          cb(null, res);
-        });
-      }
-    };
-    var showFillStatuses = function () {
-      async.parallel({
-        fill_attempts: asyncify(function(cb){
-          fill_attempts.fetch({
-            success: cb
-          })
-        }),
-        jobs: asyncify(function(cb){
-          jobs.fetch({
-            success: cb
-          });
-        })
-      }, function(){
-        var fill_attempts_view = new FillAttemptsView({
-          collection: fill_attempts,
-          jobs: jobs
-        });
-        fill_attempts_view.render();
-      });
-    }
+    var fill_attempts_view = new FillAttemptsView({
+      collection: fill_attempts,
+      jobs: jobs
+    });
 
-    Events.on('BIOGUIDE_ERROR', showFillStatuses);
-    showFillStatuses();
+    Events.on('BIOGUIDE_ERROR', fill_attempts_view.fetch_and_render);
+    fill_attempts_view.fetch_and_render();
   } else {
     //LegislatorStatusView
     $('.legislator-status-container').show();
