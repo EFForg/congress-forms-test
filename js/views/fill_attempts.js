@@ -23,7 +23,8 @@ define([
       "click .delete-job": "delete_job",
       "click .fill_info_row": "toggle_additional_info",
       "click .save-job": "save_job",
-      "click .try-job": "try_job"
+      "click .try-job": "try_job",
+      "click #captcha-submit": "captcha_submitted"
     },
 
     initialize: function(options){
@@ -165,9 +166,27 @@ define([
     },
 
     try_succeeded: function(res){
-      growl.info("Job has been performed.");
-      this.remove_editor();
-      this.fetch_and_render();
+      if(res.status == "captcha_needed"){
+        $('#captcha').attr('src', res.url);
+        $('#captcha').data('uid', res.uid);
+        $('#captcha-panel').show();
+      } else {
+        growl.info("Job has been performed.");
+        this.remove_editor();
+        this.fetch_and_render();
+      }
+    },
+
+    captcha_submitted: function(res){
+      var job = this.jobs.get(this.current_job_id);
+
+      $('#captcha-panel').hide();
+      job.perform_captcha({
+        success: this.try_succeeded,
+        error: this.try_errored,
+        uid: $('#captcha').data('uid'),
+        answer: $('#captcha-answer').val()
+      });
     },
 
     try_errored: function(){
