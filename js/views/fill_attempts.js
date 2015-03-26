@@ -89,6 +89,7 @@ define([
     },
 
     delete_job: function(e){
+      var that = this;
       e.stopPropagation();
 
       var job_id = $(e.currentTarget).data('id');
@@ -96,6 +97,9 @@ define([
       job.destroy({
         success: function(){
           growl.success("Job deleted.");
+          if(that.current_job_id == job.id){
+            that.remove_editor();
+          }
           $('.job-buttons[data-id="' + job_id + '"], .job-label[data-id="' + job_id + '"]').remove();
         },
         error: function(){ growl.success("Job could not be deleted.  Please try again later."); }
@@ -125,6 +129,11 @@ define([
         lineNumbers: true,
         mode: "javascript"
       });
+    },
+
+    remove_editor: function(){
+      $('#editor-wrapper').html("");
+      this.editor = null;
     },
 
     save_job: function(e){
@@ -157,8 +166,7 @@ define([
 
     try_succeeded: function(res){
       growl.success("Job has been performed.");
-      $('#editor-wrapper').html("");
-      this.editor = null;
+      this.remove_editor();
       this.fetch_and_render();
     },
 
