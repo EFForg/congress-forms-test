@@ -74,3 +74,11 @@ tr.fill_info_row .alert{
 #job-buttons{
   margin-top: 10px;
 }
+
+#captcha-submit{
+  margin-top: 5px;
+}
+
+#captcha-panel{
+  display: none;
+}
