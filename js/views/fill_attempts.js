@@ -79,14 +79,7 @@ define([
     load_job: function(e){
       e.stopPropagation();
 
-      if(!this.editor){
-        this.load_editor();
-      }
-
-      this.current_job_id = Number($(e.currentTarget).data('id'));
-      $('#current_job_id', this.el).text(this.current_job_id);
-
-      var job = this.jobs.get(this.current_job_id);
+      var job = this.jobs.get(Number($(e.currentTarget).data('id')));
       job.fetch({
         success: this.job_loaded,
         error: function(){
@@ -110,16 +103,21 @@ define([
     },
 
     job_loaded: function(job){
+      if(!this.editor){
+        this.load_editor();
+      }
+
       var json = JSON.stringify(job.get('arguments'), null, '\t');
       this.editor.setValue(json);
+      this.current_job_id = job.id;
+      $('#current_job_id', this.el).text(this.current_job_id);
+
       growl.success("Job loaded.");
     },
 
     load_editor: function(){
-      var panel_body = document.querySelector('#fill-attempts-panel .panel-body');
-
       var job_buttons = Mustache.render(jobButtonsTemplate, {});
-      $(job_buttons).insertBefore(panel_body.firstChild);
+      $('#editor-wrapper').html(job_buttons);
 
       this.editor = CodeMirror(function(elt) {
         $(elt).insertAfter(document.querySelector('#editor-panel').lastChild);
@@ -157,8 +155,10 @@ define([
       });
     },
 
-    try_succeeded: function(){
+    try_succeeded: function(res){
       growl.success("Job has been performed.");
+      $('#editor-wrapper').html("");
+      this.editor = null;
       this.fetch_and_render();
     },
 
