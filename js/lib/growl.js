@@ -7,6 +7,9 @@ define([
     },
     error: function(message){
       $.growl.error({message: message});
+    },
+    info: function(message){
+      $.growl({title: "Info", message: message});
     }
   };
   return growl;

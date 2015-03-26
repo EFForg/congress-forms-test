@@ -165,7 +165,7 @@ define([
     },
 
     try_succeeded: function(res){
-      growl.success("Job has been performed.");
+      growl.info("Job has been performed.");
       this.remove_editor();
       this.fetch_and_render();
     },
