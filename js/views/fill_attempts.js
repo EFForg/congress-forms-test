@@ -112,6 +112,7 @@ define([
         this.load_editor();
       }
 
+      window.location = "#fill-attempts-panel";
       var json = JSON.stringify(job.get('arguments'), null, '\t');
       this.editor.setValue(json);
       this.current_job_id = job.id;
