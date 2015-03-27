@@ -24,13 +24,14 @@ define([
       "click .fill_info_row": "toggle_additional_info",
       "click .save-job": "save_job",
       "click .try-job": "try_job",
-      "click #captcha-submit": "captcha_submitted"
+      "click #captcha-submit": "captcha_submitted",
+      "click #header-time": "sort_by_time",
+      "click #header-job-id": "sort_by_job_id"
     },
 
     initialize: function(options){
       _.bindAll(this, "job_loaded", "fill_attempt_html", "try_succeeded");
       this.jobs = options.jobs;
-      jobs = this.jobs;
     },
 
     fetch_and_render: function(){
@@ -55,8 +56,39 @@ define([
       });
     },
 
+    ascending: true,
+    sort_by: 'time',
+    sort_by_time: function(){
+      this.ascending = !this.ascending;
+      this.sort_by = 'time';
+      this.render();
+    },
+
+    sort_by_job_id: function(){
+      this.ascending = !this.ascending;
+      this.sort_by = 'job_id';
+      this.render();
+    },
+
+    sorted_collection: function(){
+      var that = this;
+      var collection = this.collection.sortBy(function(fill_attempt){
+        if(that.sort_by == 'time'){
+          return fill_attempt.get('run_at');
+        }
+        if(that.sort_by == 'job_id'){
+          var job = that.jobs.get(fill_attempt.get('dj_id'));
+          return job ? job.id : 0;
+        }
+      });
+      if(!this.ascending){
+        collection = collection.reverse();
+      }
+      return collection;
+    },
+
     render: function () {
-      $('#fill-attempts-container', this.el).html(this.collection.map(this.fill_attempt_html).join(""));
+      $('#fill-attempts-container', this.el).html(this.sorted_collection().map(this.fill_attempt_html).join(""));
       $('#actions-last-updated').text(this.collection.last_updated);
     },
 

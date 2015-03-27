@@ -98,3 +98,7 @@ tr.fill_info_row .alert{
   width: 100%;
   height: 100%;
 }
+
+#header-time, #header-job-id{
+  cursor: pointer;
+}
