@@ -173,6 +173,7 @@ define([
         $('#captcha').attr('src', res.url);
         $('#captcha').data('uid', res.uid);
         $('#captcha-panel').show();
+        $('#captcha-answer').focus();
       } else {
         growl.info("Job has been performed.");
         this.remove_editor();
