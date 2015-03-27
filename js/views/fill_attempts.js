@@ -59,7 +59,7 @@ define([
       });
     },
 
-    ascending: true,
+    ascending: false,
     sort_by: 'time',
     sort_by_time: function(){
       this.ascending = !this.ascending;
