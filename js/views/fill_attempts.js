@@ -158,6 +158,7 @@ define([
     },
 
     try_job: function(e){
+      $('#loader').show();
       var job = this.jobs.get(this.current_job_id);
 
       job.perform({
@@ -167,6 +168,7 @@ define([
     },
 
     try_succeeded: function(res){
+      $('#loader').hide();
       if(res.status == "captcha_needed"){
         $('#captcha').attr('src', res.url);
         $('#captcha').data('uid', res.uid);
@@ -179,6 +181,7 @@ define([
     },
 
     captcha_submitted: function(res){
+      $('#loader').show();
       var job = this.jobs.get(this.current_job_id);
 
       $('#captcha-panel').hide();
@@ -191,6 +194,7 @@ define([
     },
 
     try_errored: function(){
+      $('#loader').hide();
       growl.error("Job could not be performed.  Please try again later.");
     },
 
