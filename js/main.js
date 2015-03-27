@@ -180,7 +180,7 @@ require([
 
       var current_obj = _.map(current_legislators, function(current_legislator){
         if(current_legislator.bioguide_id in legislators){
-          return legislators[current_legislator.bioguide_id];
+          return _.extend(legislators[current_legislator.bioguide_id], {form_domain_url: current_legislator.website});
         } else {
           return {
             form_domain_url: current_legislator.website,
