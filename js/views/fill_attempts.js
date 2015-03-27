@@ -27,11 +27,12 @@ define([
       "click .try-job": "try_job",
       "click #captcha-submit": "captcha_submitted",
       "click #header-time": "sort_by_time",
-      "click #header-job-id": "sort_by_job_id"
+      "click #header-job-id": "sort_by_job_id",
+      "click #view-all-attempts": "view_all"
     },
 
     initialize: function(options){
-      _.bindAll(this, "job_loaded", "fill_attempt_html", "try_succeeded");
+      _.bindAll(this, "job_loaded", "fill_attempt_html", "try_succeeded", "render");
       this.jobs = options.jobs;
     },
 
@@ -236,6 +237,15 @@ define([
 
     toggle_additional_info: function(e){
       $('.fill_additional_info_row[data-id=' + $(e.currentTarget).data('id') + ']').toggle();
+    },
+
+    view_all: function(e){
+      var that = this;
+      this.collection.all_statuses = true;
+      this.collection.fetch({
+        success: that.render
+      });
+      $(e.currentTarget).hide();
     }
   });
 

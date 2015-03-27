@@ -5,7 +5,7 @@ define([
 ], function(Backbone, config, FillAttemptModel) {
   var FillAttemptCollection = Backbone.Collection.extend({
     url: function(){
-      return config.CONTACT_CONGRESS_SERVER + '/recent-statuses-detailed/' + this.options.bioguide_id + '?debug_key=' + config.DEBUG_KEY
+      return config.CONTACT_CONGRESS_SERVER + '/recent-statuses-detailed/' + this.options.bioguide_id + '?' + (this.all_statuses ? 'all_statuses=true' : '') + '&debug_key=' + config.DEBUG_KEY
     },
     model: FillAttemptModel,
     initialize: function (options) {
