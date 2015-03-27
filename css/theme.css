@@ -82,3 +82,19 @@ tr.fill_info_row .alert{
 #captcha-panel{
   display: none;
 }
+
+#loader{
+  background-color: black;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  opacity: .8;
+  display: none;
+}
+
+#loader-inner{
+  background: 50% 50% url(../images/loading.gif) no-repeat;
+  width: 100%;
+  height: 100%;
+}
