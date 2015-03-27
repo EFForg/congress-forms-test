@@ -102,3 +102,7 @@ tr.fill_info_row .alert{
 #header-time, #header-job-id{
   cursor: pointer;
 }
+
+#progress-bar-td{
+  padding: 20px 20px 0px 20px;
+}

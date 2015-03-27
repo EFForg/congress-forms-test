@@ -11,10 +11,11 @@ define([
   'async',
   'text!templates/fill_attempt_error.html',
   'text!templates/fill_attempt_success.html',
+  'text!templates/fill_attempts_loading.html',
   'text!templates/job_buttons.html',
   'lib/codemirror/codemirror.min',
   'lib/codemirror/mode/javascript/javascript.min'
-], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, growl, async, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, jobButtonsTemplate, CodeMirror, cmj){
+], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, growl, async, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, fillAttemptsLoadingTemplate, jobButtonsTemplate, CodeMirror, cmj){
   var FillAttemptsView = Backbone.View.extend({
     el: '#fill-attempts-panel',
 
@@ -36,6 +37,8 @@ define([
 
     fetch_and_render: function(){
       var that = this;
+
+      $('#fill-attempts-container', this.el).html(Mustache.render(fillAttemptsLoadingTemplate, {}));
       async.parallel({
         fill_attempts: function(cb){
           that.collection.fetch({
