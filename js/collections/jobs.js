@@ -6,7 +6,7 @@ define([
 ], function(Backbone, config, moment, JobModel) {
   var JobCollection = Backbone.Collection.extend({
     url: function(){
-      return config.CONTACT_CONGRESS_SERVER + '/list-jobs/' + this.options.bioguide_id + '?debug_key=' + config.DEBUG_KEY
+      return config.PHANTOM_DC_SERVER + '/list-jobs/' + this.options.bioguide_id + '?debug_key=' + config.DEBUG_KEY
     },
     model: JobModel,
     initialize: function (options) {

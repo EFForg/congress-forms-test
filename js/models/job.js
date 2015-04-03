@@ -5,7 +5,7 @@ define([
 ], function(config, Backbone, moment) {
   var JobModel = Backbone.Model.extend({
     url: function(){
-      return config.CONTACT_CONGRESS_SERVER + '/job-details/' + this.id + '?debug_key=' + config.DEBUG_KEY
+      return config.PHANTOM_DC_SERVER + '/job-details/' + this.id + '?debug_key=' + config.DEBUG_KEY
     },
 
     parse: function(resp){
@@ -17,14 +17,14 @@ define([
 
     perform: function(options){
       var ajax_hash = _.extend({
-        url: config.CONTACT_CONGRESS_SERVER + '/perform-job/' + this.id + '?debug_key=' + config.DEBUG_KEY,
+        url: config.PHANTOM_DC_SERVER + '/perform-job/' + this.id + '?debug_key=' + config.DEBUG_KEY,
       }, options);
       $.ajax(ajax_hash);
     },
 
     perform_captcha: function(options){
       var ajax_hash = _.extend({
-        url: config.CONTACT_CONGRESS_SERVER + '/perform-job-captcha/' + options.uid + '?debug_key=' + config.DEBUG_KEY,
+        url: config.PHANTOM_DC_SERVER + '/perform-job-captcha/' + options.uid + '?debug_key=' + config.DEBUG_KEY,
         type: "POST",
         data: {
           answer: options.answer

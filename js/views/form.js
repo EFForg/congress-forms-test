@@ -49,7 +49,7 @@ define([
       };
 
       $.ajax({
-        url: config.CONTACT_CONGRESS_SERVER + '/retrieve-form-elements',
+        url: config.PHANTOM_DC_SERVER + '/retrieve-form-elements',
         type: 'post',
         data: {bio_ids: [bioguide_id]},
         success: function( data ) {
@@ -128,7 +128,7 @@ define([
         data['$ADDRESS_ZIP4'] = zip4;
       }
       $.ajax({
-        url: config.CONTACT_CONGRESS_SERVER + '/fill-out-form',
+        url: config.PHANTOM_DC_SERVER + '/fill-out-form',
         type: 'post',
         xhrFields: {
           withCredentials: true
@@ -161,7 +161,7 @@ define([
       that.$el.find('input, textarea, button, select').attr('disabled', 'disabled');
 
       $.ajax({
-        url: config.CONTACT_CONGRESS_SERVER + '/fill-out-captcha',
+        url: config.PHANTOM_DC_SERVER + '/fill-out-captcha',
         type: 'post',
         xhrFields: {
           withCredentials: true
