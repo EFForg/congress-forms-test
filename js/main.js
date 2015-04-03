@@ -101,6 +101,8 @@ require([
     }
   });
 
+  $('#top-navbar-index, #top-navbar-list').attr('href', '?debug_key=' + config.DEBUG_KEY + '&phantom_dc_server=' + config.PHANTOM_DC_SERVER);
+
   if(bioguide_id.length > 0) {
     $('.bioguide-form-container').show();
     // Fetch legislator data from Sunlight Labs
@@ -158,7 +160,7 @@ require([
     async.parallel({
       congress_forms: function(cb){
         $.ajax({
-          url: config.PHANTOM_DC_SERVER + '/list-congress-members?debug_key=' + config.DEBUG_KEY,
+          url: config.PHANTOM_DC_SERVER + '/list-congress-members?debug_key=' + config.DEBUG_KEY + '&phantom_dc_server=' + config.PHANTOM_DC_SERVER,
           success: function (legislators) {
             cb(null, legislators);
             return;
@@ -216,6 +218,7 @@ require([
         return Mustache.render(legislatorStatusRowTemplate, {
           congress_forms_server: config.PHANTOM_DC_SERVER,
           debug_key: config.DEBUG_KEY,
+          phantom_dc_server: config.PHANTOM_DC_SERVER,
           link: (legislator.form_domain_url ? "<a href='" + legislator.form_domain_url + "'>" + legislator.form_domain_url.replace("http://","").replace("https://","") + "</a>" : ""),
           bioguide_id: legislator.bioguide_id,
           jobs: legislator.jobs || ""
