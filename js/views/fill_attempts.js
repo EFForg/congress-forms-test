@@ -13,9 +13,10 @@ define([
   'text!templates/fill_attempt_success.html',
   'text!templates/fill_attempts_loading.html',
   'text!templates/job_buttons.html',
+  'text!templates/batch_editor.html',
   'lib/codemirror/codemirror.min',
   'lib/codemirror/mode/javascript/javascript.min'
-], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, growl, async, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, fillAttemptsLoadingTemplate, jobButtonsTemplate, CodeMirror, cmj){
+], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, growl, async, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, fillAttemptsLoadingTemplate, jobButtonsTemplate, batchEditorTemplate, CodeMirror, cmj){
   var FillAttemptsView = Backbone.View.extend({
     el: '#fill-attempts-panel',
 
@@ -28,7 +29,8 @@ define([
       "click #captcha-submit": "captcha_submitted",
       "click #header-time": "sort_by_time",
       "click #header-job-id": "sort_by_job_id",
-      "click #view-all-attempts": "view_all"
+      "click #view-all-attempts": "view_all",
+      "click #batch-modify": "batch_modify"
     },
 
     initialize: function(options){
@@ -246,6 +248,34 @@ define([
         success: that.render
       });
       $(e.currentTarget).hide();
+    },
+
+    batch_modify: function(e){
+      $('#batch-editor-wrapper').toggle();
+      if(!this.batch_if_editor){
+        this.load_batch_editor();
+      }
+    },
+
+    load_batch_editor: function(){
+      var batch_editor = Mustache.render(batchEditorTemplate, {});
+      $('#batch-editor-wrapper').html(batch_editor);
+
+      this.batch_if_editor = CodeMirror(function(elt) {
+        $(elt).insertAfter(document.querySelector('#batch-editor-if-panel').lastChild);
+      }, {
+        lineNumbers: true,
+        mode: "javascript",
+        value: JSON.stringify([{"$NAME_PREFIX": "Mr. "}, "Example campaign"], null, '\t')
+      });
+
+      this.batch_then_editor = CodeMirror(function(elt) {
+        $(elt).insertAfter(document.querySelector('#batch-editor-then-panel').lastChild);
+      }, {
+        lineNumbers: true,
+        mode: "javascript",
+        value: JSON.stringify([{"$NAME_PREFIX": "Mr."}], null, '\t')
+      });
     }
   });
 

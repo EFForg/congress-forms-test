@@ -106,3 +106,9 @@ tr.fill_info_row .alert{
 #progress-bar-td{
   padding: 20px 20px 0px 20px;
 }
+
+#batch-editor-wrapper{
+  clear: both;
+  padding-top: 20px;
+  display: none;
+}
