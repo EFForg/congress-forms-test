@@ -30,7 +30,8 @@ define([
       "click #header-time": "sort_by_time",
       "click #header-job-id": "sort_by_job_id",
       "click #view-all-attempts": "view_all",
-      "click #batch-modify": "batch_modify"
+      "click #batch-modify": "batch_modify",
+      "click #batch-save": "batch_save"
     },
 
     initialize: function(options){
@@ -276,6 +277,33 @@ define([
         mode: "javascript",
         value: JSON.stringify([{"$NAME_PREFIX": "Mr."}], null, '\t')
       });
+    },
+
+    batch_save: function(){
+      try {
+        var if_arguments = JSON.parse(this.batch_if_editor.getValue());
+      } catch(err) {
+        growl.error("The JSON you've supplied for 'if' is invalid.  Please look over your JSON string.");
+      }
+
+      try {
+        var then_arguments = JSON.parse(this.batch_then_editor.getValue());
+      } catch(err) {
+        growl.error("The JSON you've supplied for 'then' is invalid.  Please look over your JSON string.");
+      }
+
+      if(if_arguments && then_arguments){
+        this.jobs.batch_save({
+          if_arguments: if_arguments,
+          then_arguments: then_arguments,
+          success: function(){
+            growl.success("Batch save completed.");
+          },
+          error: function(){
+            growl.error("Batch save could not be completed.  Please try again in a moment.");
+          }
+        });
+      };
     }
   });
 
