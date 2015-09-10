@@ -26,3 +26,8 @@ Now you can build the assets defined in `bower.json`:
 
     $ grunt build
     $ grunt minify
+
+If you want to run the tool locally with docker for development purposes (or if you just don't like hosting on github.io), you can do so:
+
+    $ docker run --rm -v $(pwd):/usr/local/apache2/htdocs -p "8080:80" hainish/apache-no-cache
+    $ firefox http://localhost:8080/
