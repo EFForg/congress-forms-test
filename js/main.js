@@ -51,7 +51,6 @@ require([
   'views/legislator_actions',
   'views/legislator_status',
   'views/fill_attempts',
-  'views/comments',
   'text!templates/legislator_status.html',
   'text!templates/legislator_status_row.html'
 ], function(
@@ -76,7 +75,6 @@ require([
   LegislatorActionsView,
   LegislatorStatusView,
   FillAttemptsView,
-  Comments,
   legislatorStatusTemplate,
   legislatorStatusRowTemplate
 ){
@@ -127,8 +125,6 @@ require([
         var formView = new FormView({model: legislator});
         formView.render();
 
-        var comments = new Comments({model: legislator});
-        comments.render();
         legislator_actions.fetch({
           success: function(legislator_actions){
             var legislator_actions_view = new LegislatorActionsView({
