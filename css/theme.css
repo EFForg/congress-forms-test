@@ -8,6 +8,10 @@
   display: none;
 }
 
+#current-legislators .status-container tr{
+  height: 38px;
+}
+
 .additional_info_row, .fill_additional_info_row{
   display: none;
 }
