@@ -101,11 +101,15 @@ define([
 
     fill_attempt_html: function(fill_attempt, key){
       var job = this.jobs.get(fill_attempt.get('dj_id'));
+      var screenshot = fill_attempt.attributes.screenshot;
+      if(screenshot){
+        screenshot = screenshot.match(/^http(s)?:\/\//) ? screenshot : config.PHANTOM_DC_SERVER + '/' + screenshot;
+      }
       var vals = _.extend({
         time: moment(fill_attempt.attributes.run_at).format('MMMM Do YYYY, h:mm:ss a'),
         uid: key,
         tr_class: key % 2 == 1 ? "active" : "",
-        screenshot_url: fill_attempt.attributes.screenshot,
+        screenshot_url: screenshot,
         job_id: job ? job.id : "",
         error: job ? job.get('last_error') : ""
       }, fill_attempt.attributes);

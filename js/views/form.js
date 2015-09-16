@@ -140,7 +140,9 @@ define([
         success: function( data ) {
           console.log(arguments);
           if(data.status === 'captcha_needed') {
-            $('.captcha-container').append(Mustache.render(captchaTemplate, {captcha_url: data.url}));
+            $('.captcha-container').append(Mustache.render(captchaTemplate, {
+              captcha_url: data.url.match(/^http(s)?:\/\//) ? data.url : config.PHANTOM_DC_SERVER + '/' + data.url
+            }));
             that.current_uid = data.uid;
           } else if (data.status === 'error') {
             that.$el.find('input, textarea, button, select').removeAttr('disabled');
