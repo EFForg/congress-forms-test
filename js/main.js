@@ -117,12 +117,13 @@ require([
       bioguide_id: bioguide_id
     });
 
+    var formView = new FormView({model: legislator});
+
     legislator.fetch({
       success: function (legislator) {
         var legislatorView = new LegislatorView({model: legislator});
         legislatorView.render();
 
-        var formView = new FormView({model: legislator});
         formView.render();
 
         legislator_actions.fetch({
@@ -144,7 +145,8 @@ require([
 
     var fill_attempts_view = new FillAttemptsView({
       collection: fill_attempts,
-      jobs: jobs
+      jobs: jobs,
+      form_view: formView
     });
 
     Events.on('BIOGUIDE_ERROR', fill_attempts_view.fetch_and_render);

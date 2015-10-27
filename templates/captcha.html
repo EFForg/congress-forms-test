@@ -1,12 +1,5 @@
-<hr />
-<div class="col-md-6 col-lg-6"></div>
-<div class="form-group col-md-6 col-lg-6">
-  <label for="captcha">Captcha</label>
-  <br />
-  <img src="{{captcha_url}}" />
-  <br />
-  <br />
-  <input id="captcha" class="form-control" type="text" />
-  <br />
-  <button type="submit" class="btn-submit-captcha btn btn-primary pull-right">Submit Captcha</button>
-</div>
+<label for="captcha">Captcha</label><br />
+<img src="{{captcha_url}}" id='captcha-image' /><br />
+<br />
+<input id="captcha-answer" class="form-control" type="text" /><br />
+<button type="submit" id='captcha-submit' class="btn-submit-captcha btn btn-primary pull-right">Submit Captcha</button>

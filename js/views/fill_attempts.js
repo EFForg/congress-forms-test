@@ -9,6 +9,8 @@ define([
   'jsyaml',
   'growl',
   'async',
+  'views/captcha',
+  'views/recaptcha',
   'text!templates/fill_attempt_error.html',
   'text!templates/fill_attempt_success.html',
   'text!templates/fill_attempts_loading.html',
@@ -16,7 +18,7 @@ define([
   'text!templates/batch_editor.html',
   'lib/codemirror/codemirror.min',
   'lib/codemirror/mode/javascript/javascript.min'
-], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, growl, async, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, fillAttemptsLoadingTemplate, jobButtonsTemplate, batchEditorTemplate, CodeMirror, cmj){
+], function($, Backbone, _, Mustache, moment, qs, config, jsyaml, growl, async, CaptchaView, RecaptchaView, fillAttemptErrorTemplate, fillAttemptSuccessTemplate, fillAttemptsLoadingTemplate, jobButtonsTemplate, batchEditorTemplate, CodeMirror, cmj){
   var FillAttemptsView = Backbone.View.extend({
     el: '#fill-attempts-panel',
 
@@ -26,7 +28,8 @@ define([
       "click .fill_info_row": "toggle_additional_info",
       "click .save-job": "save_job",
       "click .try-job": "try_job",
-      "click #captcha-submit": "captcha_submitted",
+      'click .btn-submit-captcha': 'captcha_submitted',
+      'click .recaptcha-submit': 'captcha_submitted',
       "click #header-time": "sort_by_time",
       "click #header-job-id": "sort_by_job_id",
       "click #view-all-attempts": "view_all",
@@ -37,6 +40,7 @@ define([
     initialize: function(options){
       _.bindAll(this, "job_loaded", "fill_attempt_html", "try_succeeded", "render");
       this.jobs = options.jobs;
+      this.form_view = options.form_view;
     },
 
     fetch_and_render: function(){
@@ -210,13 +214,33 @@ define([
       });
     },
 
-    try_succeeded: function(res){
+    try_succeeded: function(data){
       $('#loader').hide();
-      if(res.status == "captcha_needed"){
-        $('#captcha').attr('src', res.url);
-        $('#captcha').data('uid', res.uid);
+      if(data.status == "captcha_needed"){
+        if(this.captcha_view)
+          this.captcha_view.undelegateEvents();
+
+        captcha_url = data.url.match(/^http(s)?:\/\//) ? data.url : config.PHANTOM_DC_SERVER + '/' + data.url;
+        if(this.form_view.has_recaptcha){
+          this.captcha_view = new RecaptchaView({
+            el: '#captcha-panel',
+            captcha_url: captcha_url
+          });
+        } else {
+          this.captcha_view = new CaptchaView({
+            el: '#captcha-panel',
+            captcha_url: captcha_url
+          });
+        }
+        this.captcha_view.render();
+
+        this.captcha_view.focus();
+
+        if(data.uid){
+          this.current_uid = data.uid;
+        }
+
         $('#captcha-panel').show();
-        $('#captcha-answer').focus();
       } else {
         growl.info("Job has been performed.");
         this.remove_editor();
@@ -232,8 +256,8 @@ define([
       job.perform_captcha({
         success: this.try_succeeded,
         error: this.try_errored,
-        uid: $('#captcha').data('uid'),
-        answer: $('#captcha-answer').val()
+        uid: this.current_uid,
+        answer: this.captcha_view.getAnswer()
       });
     },
 

@@ -7,18 +7,27 @@ define([
   'config',
   'querystring',
   'data/data',
+  'views/captcha',
+  'views/recaptcha',
   'text!templates/form.html',
   'text!templates/plain-input.html',
   'text!templates/select-input.html',
-  'text!templates/captcha.html'
-], function($, Backbone, _, Mustache, Events, config, qs, Data, formTemplate, plainInputTemplate, selectInputTemplate, captchaTemplate){
+], function($, Backbone, _, Mustache, Events, config, qs, Data, CaptchaView, RecaptchaView, formTemplate, plainInputTemplate, selectInputTemplate){
   var LegislatorView = Backbone.View.extend({
     el: '.form-container',
     events: {
       'submit form.congress-forms-test': 'fillOutForm',
-      'click .btn-submit-captcha': 'fillOutCaptcha',
-      'click .btn-populate-defaults': 'populateDefaults'
+      'click .btn-submit-captcha': 'submitCaptcha',
+      'click .btn-populate-defaults': 'populateDefaults',
+      'click .recaptcha-submit': 'submitCaptcha'
     },
+
+    initialize: function () {
+      _.bindAll(this, 'submitSuccessHandler');
+    },
+
+    has_recaptcha: false,
+
     render: function () {
       var that = this;
       this.$el.show();
@@ -76,6 +85,9 @@ define([
           });
           // Loop through our newly merged actions and output them to form
           _.each(actions, function(field){
+            if(field.options_hash && 'google_recaptcha' in field.options_hash){
+              that.has_recaptcha = true;
+            }
             if(field.type === 'textarea') {
 
             } else if (field.options_hash !== null || field.name === '$ADDRESS_STATE_POSTAL_ABBREV' || field.name === '$ADDRESS_STATE') {
@@ -116,6 +128,43 @@ define([
         }
       });
     },
+
+    submitSuccessHandler: function(data){
+      if(data.status === 'captcha_needed') {
+
+        if(this.captcha_view)
+          this.captcha_view.undelegateEvents();
+
+        captcha_url = data.url.match(/^http(s)?:\/\//) ? data.url : config.PHANTOM_DC_SERVER + '/' + data.url;
+        if(this.has_recaptcha){
+          this.captcha_view = new RecaptchaView({
+            el: '.captcha-container .form-group',
+            captcha_url: captcha_url
+          });
+        } else {
+          this.captcha_view = new CaptchaView({
+            el: '.captcha-container .form-group',
+            captcha_url: captcha_url
+          });
+        }
+        this.captcha_view.render();
+
+        $('.captcha-container').show();
+
+        if(data.uid){
+          this.current_uid = data.uid;
+        }
+
+      } else if (data.status === 'error') {
+        this.$el.find('input, textarea, button, select').removeAttr('disabled');
+        $('.form-error').slideDown(200).delay(4500).slideUp(200);
+        Events.trigger('BIOGUIDE_ERROR');
+      } else {
+        $('.captcha-container').hide();
+        $('.form-success').slideDown(200);
+      }
+    },
+
     fillOutForm: function (ev) {
       // Submit form to contact congress server
       var form = $(ev.currentTarget);
@@ -137,30 +186,15 @@ define([
           bio_id: this.model.get('bioguide_id'),
           fields: data
         },
-        success: function( data ) {
-          console.log(arguments);
-          if(data.status === 'captcha_needed') {
-            $('.captcha-container').append(Mustache.render(captchaTemplate, {
-              captcha_url: data.url.match(/^http(s)?:\/\//) ? data.url : config.PHANTOM_DC_SERVER + '/' + data.url
-            }));
-            that.current_uid = data.uid;
-          } else if (data.status === 'error') {
-            that.$el.find('input, textarea, button, select').removeAttr('disabled');
-            $('.form-error').slideDown(200).delay(4500).slideUp(200);
-            Events.trigger('BIOGUIDE_ERROR');
-
-          } else {
-            $('.form-success').slideDown(200);
-          }
-        }
+        success: this.submitSuccessHandler
       });
 
       return false;
     },
-    fillOutCaptcha: function (ev) {
-      var answer = $('#captcha').val();
-      var that = this;
-      that.$el.find('input, textarea, button, select').attr('disabled', 'disabled');
+
+    submitCaptcha: function (ev) {
+      this.captcha_view.disable();
+      this.$el.find('input, textarea, button, select').attr('disabled', 'disabled');
 
       $.ajax({
         url: config.PHANTOM_DC_SERVER + '/fill-out-captcha',
@@ -169,26 +203,15 @@ define([
           withCredentials: true
         },
         data: {
-          uid: that.current_uid,
-          answer: answer
+          uid: this.current_uid,
+          answer: this.captcha_view.getAnswer()
         },
-        success: function( data ) {
-          if(data.status === 'error') {
-            $('.captcha-container').empty();
-            that.$el.find('input, textarea, button, select').removeAttr('disabled');
-            Events.trigger('BIOGUIDE_ERROR');
-            $('.form-error').slideDown(200).delay(4500).slideUp(200);
-          } else {
-            $('.form-success').slideDown(200);
-            
-          };
-        }
+        success: this.submitSuccessHandler
       });
 
       return false;
     },
-    initialize: function () {
-    },
+
     populateDefaults: function () {
       var that = this;
 
