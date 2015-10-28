@@ -37,7 +37,6 @@ define([
       } else {
         $(ev.target).html('');
       }
-      console.log(this.options_selected);
     },
 
     getAnswer: function(){
