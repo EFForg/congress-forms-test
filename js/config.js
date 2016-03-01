@@ -1,7 +1,7 @@
 define(['querystring'], function(qs) {
   // If this repo is private, feel throw to API KEY in source
   return {
-    SUNLIGHT_API_KEY: qs.get().SUNLIGHT_API_KEY || '',
+    SUNLIGHT_API_KEY: qs.get().sunlight_api_key || '',
     PHANTOM_DC_SERVER: qs.get().phantom_dc_server || 'https://congressforms.eff.org/',
     GITHUB_YAML_DIR: 'https://github.com/unitedstates/contact-congress/blob/master/members/',
     DEBUG_KEY: qs.get().debug_key || '',
