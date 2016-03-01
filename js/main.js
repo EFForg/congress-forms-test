@@ -99,7 +99,7 @@ require([
     }
   });
 
-  $('#top-navbar-index, #top-navbar-list').attr('href', '?debug_key=' + config.DEBUG_KEY + '&phantom_dc_server=' + config.PHANTOM_DC_SERVER);
+  $('#top-navbar-index, #top-navbar-list').attr('href', '?debug_key=' + config.DEBUG_KEY + '&phantom_dc_server=' + config.PHANTOM_DC_SERVER + '&sunlight_api_key=' + config.SUNLIGHT_API_KEY);
 
   if(bioguide_id.length > 0) {
     $('.bioguide-form-container').show();
@@ -216,6 +216,7 @@ require([
         return Mustache.render(legislatorStatusRowTemplate, {
           debug_key: config.DEBUG_KEY,
           phantom_dc_server: config.PHANTOM_DC_SERVER,
+          sunlight_api_key: config.SUNLIGHT_API_KEY,
           link: (legislator.form_domain_url ? "<a href='" + legislator.form_domain_url + "'>" + legislator.form_domain_url.replace("http://","").replace("https://","") + "</a>" : ""),
           bioguide_id: legislator.bioguide_id,
           jobs: legislator.jobs || ""
